@@ -1,0 +1,129 @@
+.link { color:rgba(255, 255, 255, 0.5)!important;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+ 
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase; } /* CSS link color (red) */
+
+
+.link:hover { color: white!important; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;} /* CSS link hover (green) */
+
+.solid{
+
+  color: white!important; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+
+}
+
+.vid { pointer-events:none}
+/* Container holding the image and the text */
+.containerm {
+    position: relative;
+    text-align: center;
+    color: white;
+  }
+.containerss{
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+.thumb{
+    max-width: 20%;
+    float: left;
+    margin: 5px;
+}
+
+.thumb img{
+    width: 100%;
+    float: left;
+}
+
+  /* Bottom left text */
+  .bottom-left {
+    position: absolute;
+    bottom: 8px;
+    left: 16px;
+  }
+  
+  /* Top left text */
+  .top-left {
+    position: absolute;
+    top: 8px;
+    left: 16px;
+  }
+  
+  /* Top right text */
+  .top-right {
+    position: absolute;
+    top: 8px;
+    right: 16px;
+  }
+  @import url('https://fonts.googleapis.com/css?family=Revalia');
+  @import url('https://fonts.googleapis.com/css?family=Baloo');
+.welcome-text{
+    font-family: Baloo, cursive;
+    text-align: center;
+    font-size: 35px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 2px 2px 2px;
+}
+  
+
+.welcome-name{
+    font-family: Revalia, cursive!important;
+    text-align: center;
+    font-size: 70px;
+    color: rgb(255, 255, 255);
+    text-shadow: rgb(0, 0, 0) 2px 2px 2px;
+}
+  /* Bottom right text */
+  .bottom-right {
+    position: absolute;
+    bottom: 8px;
+    right: 16px;
+  }
+  
+  /* Centered text */
+  .centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #demoFont {
+    font-family: "Lucida Console", Monaco, monospace;
+    font-size: 25px;
+    letter-spacing: 2px;
+    word-spacing: 2px;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    font-style: normal;
+    font-variant: normal;
+    text-transform: uppercase;
+    }

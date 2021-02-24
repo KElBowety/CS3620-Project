@@ -1,0 +1,58 @@
+body{
+    
+}
+
+.containerss{
+    max-width: 1000px;
+    margin: 0px auto;
+}
+
+.thumb{
+    max-width: 20%;
+    float: left;
+    margin: 5px;
+}
+
+.thumb img{
+    width: 100%;
+    float: left;
+}
+
+.link { color:rgba(255, 255, 255, 0.5)!important;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+ 
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase; } /* CSS link color (red) */
+.link:hover { color: white!important; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+}
+.solid{
+
+  color: white!important; 
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  word-spacing: 2px;
+  
+  font-weight: 700;
+  text-decoration: none;
+  font-style: normal;
+  font-variant: normal;
+  text-transform: uppercase;
+
+}
