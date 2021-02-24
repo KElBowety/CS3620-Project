@@ -20,10 +20,6 @@ $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
     ?>
 </head>
 
-
-
-
-</head>
 <body dir="rtl">
 
 <?php
