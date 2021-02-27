@@ -1,0 +1,15 @@
+{
+  "name": "vendor_name/cs3620-project",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "Karim",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+    "phpoffice/phpspreadsheet": "1.16.*"
+  }
+}
