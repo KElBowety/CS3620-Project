@@ -18,12 +18,8 @@ $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
     ?> تسجيل الدخول <?php
     echo $pageContents[2][2];
     ?>
-
-
-
-
-
 </head>
+
 <body dir="rtl">
 
 <?php

@@ -3,4 +3,3 @@
 header("Location: ./LogInPage.php");
 
 ?>
-
