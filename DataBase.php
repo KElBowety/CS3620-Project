@@ -17,10 +17,9 @@ class DataBase
         {
             mysqli_close($con);
             return false;
-
         }
-
     }
+
     public static function ExcuteRetreiveQuery($query)
     {
         $con = mysqli_connect('localhost','root','');
