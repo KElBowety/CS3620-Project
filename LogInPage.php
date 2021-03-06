@@ -26,10 +26,7 @@ $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 echo $pageContents[3][2];
 ?>
 
-
 <main style="background-color: black;">
-
-
     <?php
     if(isset($_SESSION["errorMessage"])) {
         ?>
@@ -40,12 +37,7 @@ echo $pageContents[3][2];
         unset($_SESSION["errorMessage"]);
     }
     ?>
-
-
-
-
     <form  style="padding-top: 15%; padding-bottom: 15%" action="./LoginValidation.php" method="post">
-
         <div class="row d-flex justify-content-center">
             <div class="form-outline" >
                 <label for="userName" class="form-label" ><h4 class="text-white">إسم المستخدم</h4></label>
@@ -67,23 +59,11 @@ echo $pageContents[3][2];
             <!--Grid column-->
         </div>
     </form>
-
-
-
-
-
 </main>
-
-
-
-
-
-
 
 <?php
 echo $pageContents[0][2];
 ?>
-
 
 </body>
 </html>

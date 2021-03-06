@@ -6,7 +6,7 @@ class DataBase
     public static function ExcuteQuery($query)
     {
         $con = mysqli_connect('localhost','root','');
-        mysqli_select_db($con, 'test2');
+        mysqli_select_db($con, 'our_data');
 
         $sql = $query;
         if(mysqli_query($con,$sql)) {
@@ -24,7 +24,7 @@ class DataBase
     public static function ExcuteRetreiveQuery($query)
     {
         $con = mysqli_connect('localhost','root','');
-        mysqli_select_db($con, 'test2');
+        mysqli_select_db($con, 'our_data');
 
         $sql = $query;
         if($results=mysqli_query($con,$sql)) {
