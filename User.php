@@ -5,7 +5,10 @@ require_once 'AccountantRegistrationStrategy.php';
 require_once ('Human.php');
 require_once ('IAddToDB.php');
 require_once ('DataBase.php');
-class User extends Human implements IAddToDB
+require_once ('IShowAll.php');
+require_once ('IUpdateInDB.php');
+require_once ('IRemoveFromDB.php');
+class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB
 {
     private string $userName;
     private string $password;
@@ -200,5 +203,31 @@ class User extends Human implements IAddToDB
         DataBase::ExcuteQuery($query);
         $query="INSERT INTO users(userName, password, registerationDate, LastSignIn, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->lastSignIn','$this->id','$this->type')";
         DataBase::ExcuteQuery($query);
+    }
+
+    function showAllData()
+    {
+        $query="SELECT * FROM users";
+        $result=DataBase::ExcuteRetreiveQuery($query);
+        if ($result==false)
+            return false;
+        return $result;
+
+    }
+
+    function updateInDB(): bool
+    {
+        $query= "UPDATE users WHERE id='$this->id' SET userName='$this->userName', password='$this->password', userName='$this->userName', LastSignIn='$this->lastSignIn'";
+        DataBase::ExcuteQuery($query);
+    }
+
+    function removeFromDB(): bool
+    {
+        $query= "DELETE FROM users WHERE id='$this->id'";
+        DataBase::ExcuteQuery($query);
+        $query= "DELETE FROM people WHERE id='$this->id'";
+        DataBase::ExcuteQuery($query);
+
+        return true;
     }
 }
