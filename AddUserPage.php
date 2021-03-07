@@ -60,14 +60,6 @@ echo $pageContents[3][2];
     }
     ?>
 
-
-
-
-
-
-
-
-
     <form  style="padding-top: 15%; padding-bottom: 15%" action="./AddDonorValidation.php" method="post">
         <div class=" d-flex justify-content-center" style="padding: 2%">
             <div class="container">
@@ -120,19 +112,7 @@ echo $pageContents[3][2];
             <!--Grid column-->
         </div>
     </form>
-
-
-
-
-
-
-
 </main>
-
-
-
-
-
 
 <?php
 echo $pageContents[0][2];
