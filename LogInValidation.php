@@ -19,4 +19,9 @@ if (isset($_POST['userName']) && isset($_POST['password'])) {
         header("Location: ./LoginPage.php");
         exit();
     }
+}else
+{
+    $_SESSION["errorMessage"] = "قم بتسجيل الدخول";
+    header("Location: ./LoginPage.php");
+    exit();
 }
