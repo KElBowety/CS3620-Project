@@ -6,125 +6,64 @@
     'aliases' => 
     array (
     ),
-    'reference' => '60dda98eeb1eee21026e0fb23d64416aff227477',
-    'name' => '__root__',
+    'reference' => '744752b0ade670eb80e48a528fe639fbd1bb59a4',
+    'name' => 'vendor_name/cs3620-project',
   ),
   'versions' => 
   array (
-    '__root__' => 
+    'ezyang/htmlpurifier' => 
     array (
-      'pretty_version' => 'dev-master',
-      'version' => 'dev-master',
+      'pretty_version' => 'v4.13.0',
+      'version' => '4.13.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '60dda98eeb1eee21026e0fb23d64416aff227477',
+      'reference' => '08e27c97e4c6ed02f37c5b2b20488046c8d90d75',
     ),
-    'composer/package-versions-deprecated' => 
+    'maennchen/zipstream-php' => 
     array (
-      'pretty_version' => '1.11.99.1',
-      'version' => '1.11.99.1',
+      'pretty_version' => '2.1.0',
+      'version' => '2.1.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '7413f0b55a051e89485c5cb9f765fe24bb02a7b6',
+      'reference' => 'c4c5803cc1f93df3d2448478ef79394a5981cc58',
     ),
-    'guzzlehttp/guzzle' => 
-    array (
-      'pretty_version' => '7.2.0',
-      'version' => '7.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '0aa74dfb41ae110835923ef10a9d803a22d50e79',
-    ),
-    'guzzlehttp/promises' => 
-    array (
-      'pretty_version' => '1.4.0',
-      'version' => '1.4.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '60d379c243457e073cff02bc323a2a86cb355631',
-    ),
-    'guzzlehttp/psr7' => 
-    array (
-      'pretty_version' => '1.7.0',
-      'version' => '1.7.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '53330f47520498c0ae1f61f7e2c90f55690c06a3',
-    ),
-    'laminas/laminas-diactoros' => 
-    array (
-      'pretty_version' => '2.5.0',
-      'version' => '2.5.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '4ff7400c1c12e404144992ef43c8b733fd9ad516',
-    ),
-    'laminas/laminas-zendframework-bridge' => 
-    array (
-      'pretty_version' => '1.2.0',
-      'version' => '1.2.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => '6cccbddfcfc742eb02158d6137ca5687d92cee32',
-    ),
-    'lcobucci/clock' => 
+    'markbaker/complex' => 
     array (
       'pretty_version' => '2.0.0',
       'version' => '2.0.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '353d83fe2e6ae95745b16b3d911813df6a05bfb3',
+      'reference' => '9999f1432fae467bc93c53f357105b4c31bb994c',
     ),
-    'lcobucci/jwt' => 
+    'markbaker/matrix' => 
     array (
-      'pretty_version' => '4.0.1',
-      'version' => '4.0.1.0',
+      'pretty_version' => '2.1.2',
+      'version' => '2.1.2.0',
       'aliases' => 
       array (
       ),
-      'reference' => 'b80c4876a010cd8bfa9c78de64c930bb2fc8fb9a',
+      'reference' => '361c0f545c3172ee26c3d596a0aa03f0cef65e6a',
     ),
-    'nexmo/client' => 
+    'myclabs/php-enum' => 
     array (
-      'pretty_version' => '2.4.0',
-      'version' => '2.4.0.0',
+      'pretty_version' => '1.8.0',
+      'version' => '1.8.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '9d515f6592d466159f79dde460ce2b99b8128279',
+      'reference' => '46cf3d8498b095bd33727b13fd5707263af99421',
     ),
-    'nexmo/client-core' => 
+    'phpoffice/phpspreadsheet' => 
     array (
-      'pretty_version' => '2.7.1',
-      'version' => '2.7.1.0',
+      'pretty_version' => '1.16.0',
+      'version' => '1.16.0.0',
       'aliases' => 
       array (
       ),
-      'reference' => '1862c750c671844b96733abeb2af88c0c41a228f',
-    ),
-    'ocramius/package-versions' => 
-    array (
-      'replaced' => 
-      array (
-        0 => '1.11.99',
-      ),
-    ),
-    'psr/container' => 
-    array (
-      'pretty_version' => '1.0.0',
-      'version' => '1.0.0.0',
-      'aliases' => 
-      array (
-      ),
-      'reference' => 'b7ce3b176482dbbc1245ebf52b181af44c2cf55f',
+      'reference' => '76d4323b85129d0c368149c831a07a3e258b2b50',
     ),
     'psr/http-client' => 
     array (
@@ -135,13 +74,6 @@
       ),
       'reference' => '2dfb5f6c5eff0e91e20e913f8c5452ed95b86621',
     ),
-    'psr/http-client-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
-    ),
     'psr/http-factory' => 
     array (
       'pretty_version' => '1.0.1',
@@ -150,13 +82,6 @@
       array (
       ),
       'reference' => '12ac7fcd07e5b077433f5f2bee95b3a771bf61be',
-    ),
-    'psr/http-factory-implementation' => 
-    array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
     ),
     'psr/http-message' => 
     array (
@@ -167,37 +92,32 @@
       ),
       'reference' => 'f6561bf28d520154e4b0ec72be95418abe6d9363',
     ),
-    'psr/http-message-implementation' => 
+    'psr/simple-cache' => 
     array (
-      'provided' => 
-      array (
-        0 => '1.0',
-      ),
-    ),
-    'ralouphie/getallheaders' => 
-    array (
-      'pretty_version' => '3.0.3',
-      'version' => '3.0.3.0',
+      'pretty_version' => '1.0.1',
+      'version' => '1.0.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '120b605dfeb996808c31b6477290a714d356e822',
+      'reference' => '408d5eafb83c57f6365a3ca330ff23aa4a5fa39b',
     ),
-    'vonage/nexmo-bridge' => 
+    'symfony/polyfill-mbstring' => 
     array (
-      'pretty_version' => '0.1.0',
-      'version' => '0.1.0.0',
+      'pretty_version' => 'v1.22.1',
+      'version' => '1.22.1.0',
       'aliases' => 
       array (
       ),
-      'reference' => '62653b1165f4401580ca8d2b859f59c968de3711',
+      'reference' => '5232de97ee3b75b0360528dae24e73db49566ab1',
     ),
-    'zendframework/zend-diactoros' => 
+    'vendor_name/cs3620-project' => 
     array (
-      'replaced' => 
+      'pretty_version' => 'dev-master',
+      'version' => 'dev-master',
+      'aliases' => 
       array (
-        0 => '^2.2.1',
       ),
+      'reference' => '744752b0ade670eb80e48a528fe639fbd1bb59a4',
     ),
   ),
 );
