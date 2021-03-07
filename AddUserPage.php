@@ -60,13 +60,21 @@ echo $pageContents[3][2];
     }
     ?>
 
-    <form  style="padding-top: 15%; padding-bottom: 15%" action="./AddDonorValidation.php" method="post">
+    <form  style="padding-top: 15%; padding-bottom: 15%" action="./AddUserValidation.php" method="post">
         <div class=" d-flex justify-content-center" style="padding: 2%">
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">الإسم:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="name" id="name" style="width: 400px"  required />
             </div>
+            </div>
+        </div>
+        <div class=" d-flex justify-content-center" style="padding: 2%">
+            <div class="container">
+                <div class="row" >
+                    <label  class="label col-4"  ><h4 class="text-white">الرقم القومي:</h4></label>
+                    <input type="text" class="col-6"  name="id" id="id" style="width: 400px"  required />
+                </div>
             </div>
         </div>
         <div class=" d-flex justify-content-center" style="padding: 2%">
@@ -79,17 +87,20 @@ echo $pageContents[3][2];
         </div>
         <div class=" d-flex justify-content-center" style="padding: 2%">
             <div class="container">
-            <div class="row" >
-                <label  class="label col-4"  ><h4 class="text-white">الوظيفة:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
-            </div>
+                <div class="row" >
+                    <label class="label col-4"  ><h4 class="text-white">الوظيفة:</h4></label>
+                    <select name="type" id="type" style="width: 100px" required>
+                        <option value="admin">ادمن</option>
+                        <option value="accountant">محاسب</option>
+                    </select>
+                </div>
             </div>
         </div>
         <div class=" d-flex justify-content-center" style="padding: 2%">
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">كلمة السر:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="password" id="password" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -97,7 +108,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">تأكيد كلمة السر:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="password2" id="password2" style="width: 400px"  required />
             </div>
             </div>
         </div>

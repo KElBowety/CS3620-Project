@@ -1,5 +1,7 @@
 <?php
-
+require_once 'IRegistrationStrategy.php';
+require_once 'AdminRegistrationStrategy.php';
+require_once 'AccountantRegistrationStrategy.php';
 
 class User extends Human implements IAddToDB
 {
@@ -9,6 +11,7 @@ class User extends Human implements IAddToDB
     private string $lastSignIn;
     private int $type;
     private array $allowedPages;
+    private IRegistrationStrategy $registrationStrategy;
 
     /**
      * @return int
@@ -132,6 +135,30 @@ class User extends Human implements IAddToDB
         $this->loadAllowedPages();
     }
 
+    public function setStrategy(IRegistrationStrategy $strategy) {
+        $this->registrationStrategy = $strategy;
+    }
+
+    public function register($postData): bool
+    {
+        if($_POST['type'] == 1) {
+            $this->setStrategy(new AdminRegistrationStrategy());
+        }
+        else if ($_POST['type'] == 2)
+        {
+            $this->setStrategy(new AccountantRegistrationStrategy());
+        }
+
+        if($this->registrationStrategy->register($postData))
+        {
+            return $this->addToDB();
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     /**
      * @return string
      */
@@ -167,11 +194,9 @@ class User extends Human implements IAddToDB
 
     function addToDB(): bool
     {
-
-        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name','1')";
+        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '$this->type')";
         DataBase::ExcuteQuery($query);
         $query="INSERT INTO users(userName, password, registerationDate, LastSignIn, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->lastSignIn','$this->id','$this->type')";
         DataBase::ExcuteQuery($query);
-
     }
 }
