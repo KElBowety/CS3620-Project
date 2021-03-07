@@ -2,7 +2,9 @@
 require_once 'IRegistrationStrategy.php';
 require_once 'AdminRegistrationStrategy.php';
 require_once 'AccountantRegistrationStrategy.php';
-
+require_once ('Human.php');
+require_once ('IAddToDB.php');
+require_once ('DataBase.php');
 class User extends Human implements IAddToDB
 {
     private string $userName;
@@ -123,7 +125,7 @@ class User extends Human implements IAddToDB
     {
         $query="SELECT * FROM users WHERE userName='$this->userName' AND password='$this->password' ";
         $result=DataBase::ExcuteRetreiveQuery($query);
-        if (count($result)==0)
+        if ($result==false)
         {
             return false;
         }

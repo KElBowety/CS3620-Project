@@ -70,7 +70,7 @@ echo $pageContents[3][2];
             <div class="container">
                 <div class="row" >
                     <label  class="label col-4"  ><h4 class="text-white">إسم المتبرع:</h4></label>
-                    <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                    <input type="text" class="col-6"  name="name" id="name" style="width: 400px"  required />
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@ echo $pageContents[3][2];
             <div class="container">
                 <div class="row" >
                     <label  class="label col-4"  ><h4 class="text-white">رقم التليفون:</h4></label>
-                    <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                    <input type="text" class="col-6"  name="phone" id="phone" style="width: 400px"  required />
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@ echo $pageContents[3][2];
             <div class="container">
                 <div class="row" >
                     <label  class="label col-4"  ><h4 class="text-white">رقم البطاقة:</h4></label>
-                    <input type="number" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                    <input type="number" class="col-6"  name="idNumber" id="idNumber" style="width: 400px"  required />
                 </div>
             </div>
         </div>
@@ -107,7 +107,7 @@ echo $pageContents[3][2];
 
 
     <div  class="row-cols-1" style="padding-top: 5%; padding-bottom: 5%">
-        <h4 class="text-white text-center">  تبرعات غير مؤكدة </h4>
+        <h4 class="text-white text-center">  تفاصيل التبرع </h4>
 
 
 
@@ -140,11 +140,6 @@ echo $pageContents[3][2];
     </div>
 
 
-    <div class="d-flex justify-content-center">
-        <a>
-            <button type="button" class="btn btn-primary">تأكيد ومتابعة</button>
-        </a>
-    </div>
 
 
 

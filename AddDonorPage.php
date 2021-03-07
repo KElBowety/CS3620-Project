@@ -81,7 +81,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">السن:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="Number" class="col-6"  name="Age" id="Age" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -89,7 +89,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">العنوان:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="address" id="address" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -97,7 +97,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">رقم البطاقة:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="idNumber" id="idNumber" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -105,14 +105,14 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">نوع الإشتراك:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="subscriptionTyp" id="subscriptionType" style="width: 400px"  required />
             </div>
             </div>
         </div>        <div class=" d-flex justify-content-center" style="padding: 2%">
                 <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">قيمة الإشتراك:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="Number" class="col-6"  name="subscriptionValue" id="subscriptionValue" style="width: 400px"  required />
             </div>
             </div>
         </div>
