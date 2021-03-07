@@ -71,7 +71,7 @@ echo $pageContents[3][2];
         <div class="card text-center col-lg-5" >
             <div class="card-header">تبرع مالي</div>
             <div class="card-body">
-                <form  action="./AddDonationPage.php" method="post">
+                <form  action="./addDonationValidation.php" method="post">
                     <div class=" d-flex justify-content-center" style="padding: 2%">
                         <div class="row" >
                             <label  class="label col-4"  ><h4 class="text-black">القيمة:</h4></label>
@@ -201,7 +201,7 @@ echo $pageContents[3][2];
 
 
     <div class="d-flex justify-content-center">
-        <a>
+        <a href="./ConfirmDonationPage.php">
         <button type="button" class="btn btn-primary">تأكيد ومتابعة</button>
         </a>
     </div>
