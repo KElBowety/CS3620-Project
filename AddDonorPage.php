@@ -2,11 +2,11 @@
 <?php
 require_once('DataBase.php');
 session_start();
-//if(!isset($_SESSION["LoginUser"]))
-//{
-//    header("Location: ./LoginPage.php");
-//    exit();
-//}
+if(!isset($_SESSION["LoginUser"]))
+{
+    header("Location: ./LoginPage.php");
+    exit();
+}
 
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 
@@ -61,19 +61,17 @@ echo $pageContents[3][2];
     ?>
 
 
+    <h2 class="text-white text-center" style="padding-top: 10px ">  إضافة مشترك جديد </h2>
 
 
 
 
-
-
-
-    <form  style="padding-top: 15%; padding-bottom: 15%" action="./AddDonorValidation.php" method="post">
+    <form  style="padding-top: 5%; padding-bottom: 5%" action="./AddDonorValidation.php" method="post">
         <div class=" d-flex justify-content-center" style="padding: 2%">
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">الإسم:</h4></label>
-                <input type="text" class="col-6"  name="userName" id="userName" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="name" id="name" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -81,7 +79,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">السن:</h4></label>
-                <input type="Number" class="col-6"  name="Age" id="Age" style="width: 400px"  required />
+                <input type="Number" class="col-6"  name="age" id="age" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -97,7 +95,7 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">رقم البطاقة:</h4></label>
-                <input type="text" class="col-6"  name="idNumber" id="idNumber" style="width: 400px"  required />
+                <input type="text" class="col-6"  name="id" id="id" style="width: 400px"  required />
             </div>
             </div>
         </div>
@@ -105,7 +103,10 @@ echo $pageContents[3][2];
             <div class="container">
             <div class="row" >
                 <label  class="label col-4"  ><h4 class="text-white">نوع الإشتراك:</h4></label>
-                <input type="text" class="col-6"  name="subscriptionTyp" id="subscriptionType" style="width: 400px"  required />
+                <select name="subscriptionType" id="subscriptionType" style="width: 100px" required>
+                    <option value=1>شهري</option>
+                    <option value=2>سنوي</option>
+                </select>
             </div>
             </div>
         </div>        <div class=" d-flex justify-content-center" style="padding: 2%">

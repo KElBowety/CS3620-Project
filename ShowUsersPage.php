@@ -1,14 +1,20 @@
 
 <?php
 require_once('DataBase.php');
+require_once('User.php');
 session_start();
-//if(!isset($_SESSION["LoginUser"]))
-//{
-//    header("Location: ./LoginPage.php");
-//    exit();
-//}
+if(!isset($_SESSION["LoginUser"]))
+{
+    header("Location: ./LoginPage.php");
+    exit();
+}
+$User=new User();
+$User=$User->showAllData();
 
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
+$TypeToArray= array('1'=>'أدمن','2'=>'محاسب');
+$u=$_SESSION["LoginUser"];
+//$allowedPages=$u->getAllowedPages();
 
 
 ?>
@@ -84,7 +90,9 @@ echo $pageContents[3][2];
                     <th scope="col">الوظيفة</th>
                     <th scope="col">إسم المستخدم</th>
                     <th scope="col">كلمة السر</th>
-                    <th scope="col">تعليق</th>
+                    <th scope="col">تاريخ التسجيل</th>
+                    <th scope="col">آخر تسجيل دخول</th>
+                    <th scope="col">تعديل</th>
                     <th scope="col">حذف</th>
 
 
@@ -92,16 +100,25 @@ echo $pageContents[3][2];
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-light">
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                    <td>تحربة</td>
 
-                </tr>
+                    <?php
+                    foreach ($User as $record)
+                    {
+                        echo "<tr class='table-light'>";
+                        echo "<td>".$record['id']."</td>";
+                        echo "<td>".$record['name']."</td>";
+                        echo "<td>".$TypeToArray[$record['type']]."</td>";
+                        echo "<td>".$record['userName']."</td>";
+                        echo "<td>".$record['password']."</td>";
+                        echo "<td>".$record['registerationDate']."</td>";
+                        echo "<td>".$record['LastSignIn']."</td>";
+                        echo "<td><button type='button' class='btn btn-warning'>تعديل</button></td>";
+                        echo "<td><button type='button' class='btn btn-danger'>حذف</button></td>";
+                        echo"</tr>";
+                    }
+                    ?>
+
+
                 </tbody>
             </table>
 

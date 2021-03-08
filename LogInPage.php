@@ -1,10 +1,10 @@
 <?php
 require_once('DataBase.php');
 session_start();
-//if (isset($_SESSION["LoginUser"])) {
-//    header("Location: ./admin.php");
-//    exit();
-//}
+if (isset($_SESSION["LoginUser"])) {
+    header("Location: ./adminPage.php");
+    exit();
+}
 $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 ?>
 

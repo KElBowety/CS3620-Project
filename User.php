@@ -8,6 +8,7 @@ require_once ('DataBase.php');
 require_once ('IShowAll.php');
 require_once ('IUpdateInDB.php');
 require_once ('IRemoveFromDB.php');
+
 class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB
 {
     private string $userName;
@@ -133,35 +134,30 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
             return false;
         }
         $this->regesterationDate=$result[0][2];
-        $this->lastSignIn=$result[0][3];
+        $this->lastSignIn=date('Y-m-d H:i:s');
         $this->id=$result[0][4];
         $this->type=$result[0][5];
-
         $this->loadAllowedPages();
+        $this->updateInDB();
+
+        return true;
     }
 
-    public function setStrategy(IRegistrationStrategy $strategy) {
-        $this->registrationStrategy = $strategy;
-    }
-
-    public function register($postData): bool
+    public function setStrategy(int $type)
     {
-        if($_POST['type'] == 1) {
-            $this->setStrategy(new AdminRegistrationStrategy());
-        }
-        else if ($_POST['type'] == 2)
-        {
-            $this->setStrategy(new AccountantRegistrationStrategy());
-        }
-
-        if($this->registrationStrategy->register($postData))
-        {
-            return $this->addToDB();
-        }
-        else
-        {
+        if ($type>2||$type<=0)
             return false;
-        }
+        if ($type==1)
+        $this->registrationStrategy = new AdminRegistrationStrategy();
+        else
+        $this->registrationStrategy = new AccountantRegistrationStrategy();
+    }
+
+    public function checkRegister($password): bool
+    {
+       if ($this->registrationStrategy==null)
+           return false;
+       return ($this->registrationStrategy->register($password));
     }
 
     /**
@@ -194,20 +190,38 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
     public function loadAllowedPages(): void
     {
         $query="SELECT pageId FROM pagepermissions WHERE userId='$this->type'";
-        $this->allowedPages=DataBase::ExcuteRetreiveQuery($query);
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+
+        foreach ($temp as $value) {
+            $this->allowedPages[] = $value[0];
+        }
+
+
     }
 
-    function addToDB(): bool
+    public function addToDB(): bool
     {
-        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '$this->type')";
-        DataBase::ExcuteQuery($query);
-        $query="INSERT INTO users(userName, password, registerationDate, LastSignIn, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->lastSignIn','$this->id','$this->type')";
-        DataBase::ExcuteQuery($query);
+        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '1')";
+        $check1=DataBase::ExcuteQuery($query);
+        if (!$check1)
+        {
+            return false;
+        }
+        $this->regesterationDate=date('Y-m-d H:i:s');
+        $query="INSERT INTO users(userName, password, registerationDate, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
+        $check2=DataBase::ExcuteQuery($query);
+
+        if (!$check2)
+        {
+            $this->removeWrongInserted();
+            return false;
+        }
+        return true;
     }
 
-    function showAllData()
+    public function showAllData()
     {
-        $query="SELECT * FROM users";
+        $query="SELECT users.id, name, userName,password,registerationDate,LastSignIn, Users.type FROM people INNER JOIN users ON users.id = people.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);
         if ($result==false)
             return false;
@@ -215,19 +229,42 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     }
 
-    function updateInDB(): bool
+    public function updateInDB(): bool
     {
-        $query= "UPDATE users WHERE id='$this->id' SET userName='$this->userName', password='$this->password', userName='$this->userName', LastSignIn='$this->lastSignIn'";
+        $query= "UPDATE users SET userName='$this->userName', password='$this->password', LastSignIn='$this->lastSignIn'  WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
+        return true;
     }
 
-    function removeFromDB(): bool
+    public function removeFromDB(): bool
     {
         $query= "DELETE FROM users WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
         $query= "DELETE FROM people WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
-
         return true;
+    }
+    private function removeWrongInserted(): void
+    {
+        $query= "DELETE FROM people WHERE id='$this->id'";
+        DataBase::ExcuteQuery($query);
+    }
+
+    public function changePassword(string $oldPassword, string $newPassword): bool
+    {
+        if ($oldPassword != $this->password)
+        {
+            return false;
+        }
+        $temp=$this->password;
+        $this->password=$newPassword;
+        if ($this->updateInDB())
+        {
+            return true;
+        }else{
+            $this->password=$temp;
+            return false;
+        }
+
     }
 }

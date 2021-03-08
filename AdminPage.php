@@ -2,11 +2,11 @@
 <?php
 require_once('DataBase.php');
 session_start();
-//if(!isset($_SESSION["LoginUser"]))
-//{
-//    header("Location: ./LoginPage.php");
-//    exit();
-//}
+if(!isset($_SESSION["LoginUser"]))
+{
+    header("Location: ./LoginPage.php");
+    exit();
+}
 
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 
