@@ -22,10 +22,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
     ?> تبرع جديد <?php
                     echo $pageContents[2][2];
                     ?>
-
-
-
-
 </head>
 
 <body dir="rtl">
@@ -61,9 +57,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
         }
         ?>
 
-
-
-
         <h1 class="text-white text-center"> إضافة تبرع </h1>
 
         <div class="container" style="padding: 2%">
@@ -85,8 +78,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                                 </div>
                             </div>
 
-
-
                             <!--Grid row-->
 
                             <!--Grid row-->
@@ -101,18 +92,17 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                 </div>
                 <div class="col-sm-2">
 
-
                 </div>
                 <div class="card text-center col-lg-5">
                     <div class="card-header">تبرع عيني</div>
                     <div class="card-body">
-                        <form action="./InkindDonationValidation.php" method="post">
+                        <form action="./AddDonationValidation.php" method="post">
                             <div class=" d-flex justify-content-center" style="padding: 2%">
                                 <div class="row">
                                     <label class="label col-4">
                                         <h4 class="text-black">الإسم:</h4>
                                     </label>
-                                    <input type="text" class="col-6" name="userName" id="userName" style="width: 400px" required />
+                                    <input type="text" class="col-6" name="name" id="name" style="width: 400px" required />
                                 </div>
                             </div>
                             <div class=" d-flex justify-content-center" style="padding: 2%">
@@ -120,7 +110,11 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                                     <label class="label col-4">
                                         <h4 class="text-black">النوع:</h4>
                                     </label>
-                                    <input type="text" class="col-6" name="userName" id="userName" style="width: 400px" required />
+                                    <select name="donationType" id="donationType" style="width: 100px" required>
+                                        <option value=1>ملابس</option>
+                                        <option value=2>طعام</option>
+                                        <option value=3>أثاث</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class=" d-flex justify-content-center" style="padding: 2%">
@@ -139,33 +133,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                                     <input type="number" class="col-6" name="quantity" id="quantity" style="width: 400px" required />
                                 </div>
                             </div>
-                            <div class=" d-flex justify-content-center" style="padding: 2%">
-                                <div class="row">
-                                    <label class="label col-4">
-                                        <h4 class="text-black">الوحدة:</h4>
-                                    </label>
-                                    <input type="text" class="col-6" name="userName" id="userName" style="width: 400px" required />
-                                </div>
-                            </div>
-                            <div class=" d-flex justify-content-center" style="padding: 2%">
-                                <div class="row">
-                                    <label class="label col-4">
-                                        <h4 class="text-black">الصلاحية:</h4>
-                                    </label>
-                                    <input type="text" class="col-6" name="date" id="date" style="width: 400px" required />
-                                </div>
-                            </div>
-                            <div class=" d-flex justify-content-center" style="padding: 2%">
-                                <div class="row">
-                                    <label class="label col-4">
-                                        <h4 class="text-black">الحالة:</h4>
-                                    </label>
-                                    <input type="checkbox" class="col-6" name="status" id="status" style="width: 400px" required />
-                                </div>
-                            </div>
-
-
-
 
                             <!--Grid row-->
 
@@ -182,16 +149,8 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
             </div>
         </div>
 
-
-
-
-
         <div class="row-cols-1" style="padding-top: 5%; padding-bottom: 5%">
             <h4 class="text-white text-center"> تبرعات غير مؤكدة </h4>
-
-
-
-
             <div class="container">
                 <table class="table" dir="rtl">
                     <thead>
@@ -201,8 +160,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                             <th scope="col">قيمة</th>
                             <th scope="col">عدد</th>
                             <th scope="col">إجمالى</th>
-                            <th scope="col">مدة الصلاحية بالأيام</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -212,7 +169,6 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                             <td>تحربة</td>
                             <td>تجربة</td>
                             <td>تحربة</td>
-                            <td>تجربة</td>
                         </tr>
                     </tbody>
                 </table>
@@ -226,16 +182,7 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
             </a>
         </div>
 
-
-
-
-
     </main>
-
-
-
-
-
 
     <?php
     echo $pageContents[0][2];

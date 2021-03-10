@@ -35,6 +35,7 @@ abstract class TripBase implements IAddToDB
         $this->description = $description;
     }
 
+    public abstract function addToDB(): bool;
     public abstract function getDescription(): string;
     public abstract function calculateCost() : float;
 }

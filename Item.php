@@ -1,7 +1,10 @@
 <?php
 
+require_once 'IDonnable.php';
+require_once 'IValidation.php';
+require_once 'IAddToDB.php';
 
-abstract class Item implements IDonnable
+abstract class Item implements IDonnable, IValidation, IAddToDB
 {
     protected int $id;
     protected string $name;
@@ -9,8 +12,6 @@ abstract class Item implements IDonnable
     protected float $itemValue;
     protected float $value;
     protected string $entryDate;
-
-
 
     public function donate(): bool
     {

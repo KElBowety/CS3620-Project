@@ -1,7 +1,8 @@
 <?php
 
+require_once 'Item.php';
 
-class Furniture extends Item implements IValidation,IAddToDB
+class Furniture extends Item
 {
     private bool $isNew;
 

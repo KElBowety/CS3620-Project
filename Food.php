@@ -1,5 +1,6 @@
 <?php
 
+require_once 'Item.php';
 
 class Food extends Item implements IValidation,IAddToDB
 {
