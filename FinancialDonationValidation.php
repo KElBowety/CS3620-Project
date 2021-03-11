@@ -1,21 +1,35 @@
 <?php
-
-require_once('Donation.php');
+require_once ('Financial.php');
 session_start();
 
-if (isset($_POST['value']) && isset($_POST['date'])) {
+if(!isset($_SESSION['donations'])) {
+    $_SESSION['donations'] = array();
+}
 
-    $d = new Donation();
-    $logResult = $d->addToDB();
-    if ($logResult) {
-        //$_SESSION["LoginUser"] = $u;
-        $_SESSION["successMessage"] = "تم اضافة التبرع";
-        $i++;
-        header("Location: ./AdminPage.php");
+if(isset($_POST)) {
+    if (isset($_POST['value'])){
+        $financial= new Financial();
+        if (!$financial->setAmount($_POST['value'])){
+            $_SESSION['errorMessage'] = "قيمة غير صالحة";
+            header("Location: ./addDonationPage.php");
+            exit();
+        }
+        $financial=serialize($financial);
+
+        array_push($_SESSION['donations'], $financial);
+        $_SESSION['successMessage'] = "تم تسجيل التبرع بنجاح";
+        header("Location: ./addDonationPage.php");
         exit();
-    } else {
-        $_SESSION["errorMessage"] = "البيانات ليست كاملة";
+    }else{
+        $_SESSION['errorMessage'] = "حدث خطأ ";
         header("Location: ./addDonationPage.php");
         exit();
     }
+
+
+}else{
+
+    $_SESSION['errorMessage'] = "حدث خطأ ";
+    header("Location: ./addDonationPage.php");
+    exit();
 }

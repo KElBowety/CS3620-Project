@@ -64,17 +64,13 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                 <div class="card text-center col-lg-5">
                     <div class="card-header">تبرع مالي</div>
                     <div class="card-body">
-                        <form action="./AddDonationPage.php" method="post">
+                        <form action="./FinancialDonationValidation.php" method="post">
                             <div class=" d-flex justify-content-center" style="padding: 2%">
                                 <div class="row">
                                     <label class="label col-4">
                                         <h4 class="text-black">القيمة:</h4>
                                     </label>
                                     <input type="number" class="col-6" name="value" id="value" style="width: 400px" required />
-                                    <label class="label col-4">
-                                        <h4 class="text-black">الصلاحية:</h4>
-                                    </label>
-                                    <input type="text" class="col-6" name="date" id="date" style="width: 400px" required />
                                 </div>
                             </div>
 
@@ -107,10 +103,10 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                             </div>
                             <div class=" d-flex justify-content-center" style="padding: 2%">
                                 <div class="row">
-                                    <label class="label col-4">
-                                        <h4 class="text-black">النوع:</h4>
+                                    <label class="label col ">
+                                        <h4 class="text-black">النوع: </h4>
                                     </label>
-                                    <select name="donationType" id="donationType" style="width: 100px" required>
+                                    <select class="col" name="donationType" id="donationType" style="width: 100px" required>
                                         <option value=1>ملابس</option>
                                         <option value=2>طعام</option>
                                         <option value=3>أثاث</option>
@@ -164,11 +160,40 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                     </thead>
                     <tbody>
                         <tr class="table-light">
-                            <td>تحربة</td>
-                            <td>تجربة</td>
-                            <td>تحربة</td>
-                            <td>تجربة</td>
-                            <td>تحربة</td>
+                            <?php
+                             if(isset($_SESSION['donations'])) {
+                                if (empty($_SESSION['donations'])){
+
+                                }else{
+                                    $myarr=$_SESSION['donations'];
+                                    for ($i=0;$i<count($myarr);$i++)
+                                    {
+                                        echo $i;
+                                        $obj=unserialize($myarr[$i]);
+                                        print_r($obj);
+//                                        if (is_a($obj, 'Financial')) {
+//                                            echo "<td>تبرع مالى</td>";
+//                                            echo "<td>نقدي</td>";
+//                                            echo "<td>".$obj->getValue()."</td>";
+//                                            echo "<td>1</td>";
+//                                            echo "<td>".$obj->getValue()."</td>";
+//
+//                                        }else{
+//                                            echo "<td>تبرع عيني</td>";
+//                                        }
+                                    }
+
+                                }
+                             }
+
+
+
+                            ?>
+<!--                            <td>تحربة</td>-->
+<!--                            <td>تجربة</td>-->
+<!--                            <td>تحربة</td>-->
+<!--                            <td>تجربة</td>-->
+<!--                            <td>تحربة</td>-->
                         </tr>
                     </tbody>
                 </table>

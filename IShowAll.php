@@ -3,5 +3,5 @@
 
 interface IShowAll
 {
-    function showAllData(): string;
+    function showAllData();
 }

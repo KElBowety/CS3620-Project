@@ -33,11 +33,15 @@ if(isset($_POST)) {
         $obj->setItemValue($_POST['value']);
         $obj->setQuantity($_POST['quantity']);
         $obj->setEntryDate(date(DATE_RFC2822));
+        $obj=serialize($obj);
+
 
         array_push($_SESSION['donations'], $obj);
-        print_r( $obj);
     }
     else {
         $_SESSION['donationError'] = true;
+        $_SESSION['errorMessage'] = "قيمة غير صالحة";
+        header("Location: ./addDonationPage.php");
+        exit();
     }
 }

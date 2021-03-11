@@ -1,6 +1,7 @@
 <?php
 
-
+require_once ('IDonnable.php');
+require_once ('IAddToDB.php');
 class Financial implements IDonnable,IAddToDB
 {
     private float $amount;
