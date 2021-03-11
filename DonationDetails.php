@@ -1,4 +1,11 @@
 <?php
+require_once 'IAddToDB.php';
+require_once 'IDonnable.php';
+require_once 'Financial.php';
+require_once 'Furniture.php';
+require_once 'Clothes.php';
+require_once 'Food.php';
+
 
 
 class DonationDetails implements IAddToDB
@@ -8,7 +15,7 @@ class DonationDetails implements IAddToDB
     private float $value;
     private int $donnableId;
     private int $type;
-    private IDonnable $donnable;
+    private $donnable;
 
     /**
      * @return IDonnable
@@ -86,10 +93,10 @@ class DonationDetails implements IAddToDB
 
     function donate(): bool
     {
-
-        $this->donnable->donate();
         if($this->donnable==null)
             return false;
+        $this->donnable->donate();
+
         $this->donnableId=$this->donnable->getId();
         $this->value=$this->donnable->getValue();
         if ($this->donnable instanceof Item)
@@ -107,7 +114,8 @@ class DonationDetails implements IAddToDB
 
     function addToDB(): bool
     {
-        $query="INSERT INTO donationdetails (donationdID, value, type, donnableID) VALUES('$this->donationId','$this->value','$this->type','$this->size')";
+        $this->donnableId=$this->donnable->getId();
+        $query="INSERT INTO donationdetails (donationdID, value, type, donnableID) VALUES('$this->donationId','$this->value','$this->type','$this->donnableId')";
         DataBase::ExcuteQuery($query);
         return true;
     }

@@ -2,12 +2,15 @@
 <?php
 require_once('DataBase.php');
 session_start();
-//if(!isset($_SESSION["LoginUser"]))
-//{
-//    header("Location: ./LoginPage.php");
-//    exit();
-//}
-
+if(!isset($_SESSION["LoginUser"]))
+{
+    header("Location: ./LoginPage.php");
+    exit();
+}
+include 'Financial.php';
+include 'Clothes.php';
+include 'Food.php';
+include 'Furniture.php';
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 
 
@@ -121,19 +124,52 @@ echo $pageContents[3][2];
                     <th scope="col">قيمة</th>
                     <th scope="col">عدد</th>
                     <th scope="col">إجمالى</th>
-                    <th scope="col">مدة الصلاحية بالأيام</th>
-
                 </tr>
                 </thead>
                 <tbody>
-                <tr class="table-light">
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                    <td>تحربة</td>
-                    <td>تجربة</td>
-                </tr>
+                <?php
+                if(isset($_SESSION['donations'])) {
+                    if (empty($_SESSION['donations'])){
+
+                    }else{
+
+                        $myarr=unserialize($_SESSION['donations']);
+                        for ($i=0;$i<count($myarr);$i++)
+                        {
+                            echo '<tr class="table-light">';
+                            echo $i;
+                            $obj=unserialize($myarr[$i]);
+                            print_r($obj);
+                            if (is_a($obj, 'Financial')) {
+                                echo "<td>تبرع مالى</td>";
+                                echo "<td>نقدي</td>";
+                                echo "<td>".$obj->getValue()."</td>";
+                                echo "<td>1</td>";
+                                echo "<td>".$obj->getValue()."</td>";
+
+                            }else{
+                                echo "<td>تبرع عيني</td>";
+                                if (is_a($obj, 'Clothes'))
+                                    echo "<td>ملابس</td>";
+                                if (is_a($obj, 'Furniture'))
+                                    echo "<td>أثاث</td>";
+                                if (is_a($obj, 'Food'))
+                                    echo "<td>طعام</td>";
+                                echo "<td>".$obj->getItemValue()."</td>";
+                                echo "<td>".$obj->getQuantity()."</td>";
+                                echo "<td>".$obj->getValue()."</td>";
+                                echo '</tr>';
+
+                            }
+                        }
+
+                    }
+                }
+
+
+
+                ?>
+
                 </tbody>
             </table>
         </div>

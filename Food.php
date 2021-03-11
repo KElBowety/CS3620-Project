@@ -48,9 +48,11 @@ class Food extends Item
         $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name ', '$this->quantity','$this->entryDate','2', '$this->itemValue')";
         DataBase::ExcuteQuery($query);
         $query="SELECT MAX(id) FROM items";
-        $this->id=DataBase::ExcuteRetreiveQuery($query);
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $this->id=$temp[0][0];
         $query="INSERT INTO food (id, validationPeriod) VALUES('$this->id','$this->validationPeriod')";
         DataBase::ExcuteQuery($query);
         return true;
     }
+
 }

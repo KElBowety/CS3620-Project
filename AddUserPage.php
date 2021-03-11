@@ -1,6 +1,8 @@
 
 <?php
 require_once('DataBase.php');
+require_once('User.php');
+
 session_start();
 if(!isset($_SESSION["LoginUser"]))
 {
@@ -9,6 +11,15 @@ if(!isset($_SESSION["LoginUser"]))
 }
 
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
+
+$pageId=2;
+$currUser=unserialize($_SESSION['LoginUser']);
+if (!$currUser->checkAccess($pageId))
+{
+    header("Location: ./LoginPage.php");
+    $_SESSION['errorMessage']="هذا المستخدم ليس لديه وصول لتلك الصفحة";
+    exit();
+}
 
 
 ?>

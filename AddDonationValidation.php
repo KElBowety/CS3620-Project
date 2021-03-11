@@ -1,13 +1,15 @@
 <?php
 
-require_once 'Clothes.php';
-require_once 'Food.php';
-require_once 'Furniture.php';
+include_once 'Clothes.php';
+include_once 'Food.php';
+include_once 'Furniture.php';
 
 session_start();
 
 if(!isset($_SESSION['donations'])) {
-    $_SESSION['donations'] = array();
+    $arr=array();
+    $arr=serialize($arr);
+    $_SESSION['donations'] = $arr;
 }
 
 $obj = NULL;
@@ -32,11 +34,15 @@ if(isset($_POST)) {
         $obj->setName($_POST['name']);
         $obj->setItemValue($_POST['value']);
         $obj->setQuantity($_POST['quantity']);
-        $obj->setEntryDate(date(DATE_RFC2822));
+        $obj->setEntryDate(date('Y-m-d H:i:s'));
         $obj=serialize($obj);
-
-
-        array_push($_SESSION['donations'], $obj);
+        $arr=unserialize($_SESSION['donations']);
+        array_push($arr, $obj);
+        $arr=serialize($arr);
+        $_SESSION['donations']=$arr;
+        $_SESSION['successMessage'] = "تمت الإضافة بنجاح";
+        header("Location: ./addDonationPage.php");
+        exit();
     }
     else {
         $_SESSION['donationError'] = true;
@@ -44,4 +50,6 @@ if(isset($_POST)) {
         header("Location: ./addDonationPage.php");
         exit();
     }
+}else{
+    echo 'error';
 }

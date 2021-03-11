@@ -1,6 +1,6 @@
 <?php
-
 require_once 'Item.php';
+require_once 'DataBase.php';
 
 class Clothes extends Item
 {
@@ -29,10 +29,13 @@ class Clothes extends Item
 
     function addToDB(): bool
     {
-        $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name ', '$this->quantity','$this->entryDate','3', '$this->itemValue')";
+        $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name','$this->quantity','$this->entryDate','3','$this->itemValue')";
+        $_SESSION['errorMessage']=$query;
         DataBase::ExcuteQuery($query);
+        header("Location: ./confirmDonationPage.php");
         $query="SELECT MAX(id) FROM items";
-        $this->id=DataBase::ExcuteRetreiveQuery($query);
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $this->id=$temp[0][0];
         $query="INSERT INTO clothes (id, size) VALUES('$this->id','$this->size')";
         DataBase::ExcuteQuery($query);
         return true;

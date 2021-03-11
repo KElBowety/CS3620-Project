@@ -46,7 +46,8 @@ class Furniture extends Item
         $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name ', '$this->quantity','$this->entryDate','1', '$this->itemValue')";
         DataBase::ExcuteQuery($query);
         $query="SELECT MAX(id) FROM items";
-        $this->id=DataBase::ExcuteRetreiveQuery($query);
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $this->id=$temp[0][0];
         $query="INSERT INTO furniture (id, isNew) VALUES('$this->id','$this->isNew')";
         DataBase::ExcuteQuery($query);
         return true;

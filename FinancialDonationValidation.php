@@ -1,9 +1,11 @@
 <?php
-require_once ('Financial.php');
+include_once ('Financial.php');
 session_start();
 
 if(!isset($_SESSION['donations'])) {
-    $_SESSION['donations'] = array();
+    $arr=array();
+    $arr=serialize($arr);
+    $_SESSION['donations'] = $arr;
 }
 
 if(isset($_POST)) {
@@ -15,8 +17,10 @@ if(isset($_POST)) {
             exit();
         }
         $financial=serialize($financial);
-
-        array_push($_SESSION['donations'], $financial);
+        $arr=unserialize($_SESSION['donations']);
+        array_push($arr, $financial);
+        $arr=serialize($arr);
+        $_SESSION['donations']=$arr;
         $_SESSION['successMessage'] = "تم تسجيل التبرع بنجاح";
         header("Location: ./addDonationPage.php");
         exit();

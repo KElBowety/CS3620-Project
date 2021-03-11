@@ -169,7 +169,7 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
         $check2=DataBase::ExcuteQuery($query);
         if (!$check2)
         {
-            $this->removeWrongInserted();
+//            $this->removeWrongInserted();
             return false;
         }
         return true;

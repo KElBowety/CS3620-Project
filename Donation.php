@@ -1,5 +1,5 @@
 <?php
-
+require_once 'IAddToDB.php';
 
 class Donation implements IAddToDB
 {
@@ -88,7 +88,7 @@ class Donation implements IAddToDB
         return true;
     }
 
-    public function donate(Array $donationDetails): bool
+    public function donate($donationDetails): bool
     {
         if (count($donationDetails)==0)
         {
@@ -97,12 +97,14 @@ class Donation implements IAddToDB
         //TODO: calculate value from the array first here
         $this->addToDB();
 
-        foreach ($donationDetails as $value) {
+        for ($i=0;$i<count($donationDetails);$i++)
+        {
+            $_SESSION['errorMessage']=$i;
+            $value=$donationDetails[$i];
             $value->setDonationId($this->id);
             $value->donate();
         }
-
-
+        return true;
 
     }
 
@@ -114,9 +116,12 @@ class Donation implements IAddToDB
     function addToDB(): bool
     {
         $query="INSERT INTO donations (donorId, date , value) VALUES('$this->donorId ', '$this->date','$this->value')";
+        $_SESSION['errorMessage']=$query;
         DataBase::ExcuteQuery($query);
         $query="SELECT MAX(id) FROM donations";
-        $this->id=DataBase::ExcuteRetreiveQuery($query);
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $this->id=$temp[0][0];
+        return true;
 
     }
 }

@@ -29,8 +29,11 @@ class Financial implements IDonnable,IAddToDB
 
     function addToDB(): bool
     {
-        $query="INSERT INTO enteries (amount, type ) VALUES('$this->amount','1')";
+        $query="INSERT INTO entries (amount, type ) VALUES('$this->amount','1')";
         DataBase::ExcuteQuery($query);
+        $query="SELECT MAX(id) FROM entries";
+        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $this->id=$temp[0][0];
         return true;
     }
     public function getId():int

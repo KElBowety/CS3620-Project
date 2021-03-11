@@ -9,6 +9,7 @@ if(!isset($_SESSION["LoginUser"]))
     exit();
 }
 $User=new User();
+
 $User=$User->showAllData();
 
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");

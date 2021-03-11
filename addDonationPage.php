@@ -1,5 +1,9 @@
 <?php
 require_once('DataBase.php');
+include 'Financial.php';
+include 'Clothes.php';
+include 'Food.php';
+include 'Furniture.php';
 session_start();
 //if(!isset($_SESSION["LoginUser"]))
 //{
@@ -159,28 +163,39 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="table-light">
                             <?php
                              if(isset($_SESSION['donations'])) {
                                 if (empty($_SESSION['donations'])){
 
                                 }else{
-                                    $myarr=$_SESSION['donations'];
+
+                                    $myarr=unserialize($_SESSION['donations']);
                                     for ($i=0;$i<count($myarr);$i++)
                                     {
+                                        echo '<tr class="table-light">';
                                         echo $i;
                                         $obj=unserialize($myarr[$i]);
-                                        print_r($obj);
-//                                        if (is_a($obj, 'Financial')) {
-//                                            echo "<td>تبرع مالى</td>";
-//                                            echo "<td>نقدي</td>";
-//                                            echo "<td>".$obj->getValue()."</td>";
-//                                            echo "<td>1</td>";
-//                                            echo "<td>".$obj->getValue()."</td>";
-//
-//                                        }else{
-//                                            echo "<td>تبرع عيني</td>";
-//                                        }
+                                        if (is_a($obj, 'Financial')) {
+                                            echo "<td>تبرع مالى</td>";
+                                            echo "<td>نقدي</td>";
+                                            echo "<td>".$obj->getValue()."</td>";
+                                            echo "<td>1</td>";
+                                            echo "<td>".$obj->getValue()."</td>";
+
+                                        }else{
+                                            echo "<td>تبرع عيني</td>";
+                                            if (is_a($obj, 'Clothes'))
+                                                echo "<td>ملابس</td>";
+                                            if (is_a($obj, 'Furniture'))
+                                                echo "<td>أثاث</td>";
+                                            if (is_a($obj, 'Food'))
+                                                echo "<td>طعام</td>";
+                                            echo "<td>".$obj->getItemValue()."</td>";
+                                            echo "<td>".$obj->getQuantity()."</td>";
+                                            echo "<td>".$obj->getValue()."</td>";
+                                            echo '</tr>';
+
+                                        }
                                     }
 
                                 }
@@ -189,12 +204,8 @@ $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 
 
                             ?>
-<!--                            <td>تحربة</td>-->
-<!--                            <td>تجربة</td>-->
-<!--                            <td>تحربة</td>-->
-<!--                            <td>تجربة</td>-->
-<!--                            <td>تحربة</td>-->
-                        </tr>
+
+
                     </tbody>
                 </table>
             </div>

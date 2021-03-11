@@ -267,4 +267,15 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
         }
 
     }
+    public function checkAccess(int $pageId):bool
+    {
+        foreach ($this->allowedPages as $value)
+        {
+            if ($value==$pageId)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 }

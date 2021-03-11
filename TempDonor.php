@@ -1,7 +1,9 @@
 <?php
 
-
-class TempDonor extends Human
+require_once 'IAddToDB.php';
+require_once 'Human.php';
+require_once 'DataBase.php';
+class TempDonor extends Human implements IAddToDB
 {
 private string $phoneNumber;
 
@@ -67,5 +69,22 @@ private string $phoneNumber;
         $d->setDonorId($this->id);
         $d->setDate(date("Y-m-d H:i:s"));
         $d->donate($ddArray);
+    }
+
+    public function addToDB(): bool
+    {
+        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '2')";
+        $check1=DataBase::ExcuteQuery($query);
+        if (!$check1)
+        {
+            return false;
+        }
+        $query="INSERT INTO tempdonors(phoneNumber, id) VALUES ('$this->phoneNumber','$this->id')";
+        $check2=DataBase::ExcuteQuery($query);
+        if (!$check2)
+        {
+            return false;
+        }
+        return true;
     }
 }

@@ -15,7 +15,7 @@ abstract class Item implements IDonnable, IValidation, IAddToDB
 
     public function donate(): bool
     {
-        // TODO: @overridden in extending classes
+        return true;
     }
 
     public function getValue(): float
