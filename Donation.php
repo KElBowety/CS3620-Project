@@ -99,7 +99,6 @@ class Donation implements IAddToDB
 
         for ($i=0;$i<count($donationDetails);$i++)
         {
-            $_SESSION['errorMessage']=$i;
             $value=$donationDetails[$i];
             $value->setDonationId($this->id);
             $value->donate();

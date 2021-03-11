@@ -115,7 +115,7 @@ class DonationDetails implements IAddToDB
     function addToDB(): bool
     {
         $this->donnableId=$this->donnable->getId();
-        $query="INSERT INTO donationdetails (donationdID, value, type, donnableID) VALUES('$this->donationId','$this->value','$this->type','$this->donnableId')";
+        $query="INSERT INTO donationdetails (donationID, value, type, donnableID) VALUES('$this->donationId','$this->value','$this->type','$this->donnableId')";
         DataBase::ExcuteQuery($query);
         return true;
     }
