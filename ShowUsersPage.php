@@ -92,7 +92,6 @@ echo $pageContents[3][2];
                     <th scope="col">كلمة السر</th>
                     <th scope="col">تاريخ التسجيل</th>
                     <th scope="col">آخر تسجيل دخول</th>
-                    <th scope="col">تعديل</th>
                     <th scope="col">حذف</th>
 
 
@@ -112,9 +111,9 @@ echo $pageContents[3][2];
                         echo "<td>".$record['password']."</td>";
                         echo "<td>".$record['registerationDate']."</td>";
                         echo "<td>".$record['LastSignIn']."</td>";
-                        echo "<td><button type='button' class='btn btn-warning'>تعديل</button></td>";
-                        echo "<td><button type='button' class='btn btn-danger'>حذف</button></td>";
+                        echo "<td><a href='./DeleteUserPage.php?userId=".$record['id']."'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
                         echo"</tr>";
+
                     }
                     ?>
 

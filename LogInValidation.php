@@ -10,7 +10,7 @@ if (isset($_POST['userName']) && isset($_POST['password'])) {
     $u->setPassword($_POST['password']);
     $logResult = $u->logIn();
     if ($logResult) {
-        $_SESSION["LoginUser"] = $u;
+        $_SESSION["LoginUser"] = serialize($u);
         $_SESSION["successMessage"] = "تم تسجيل الدخول بنجاح";
         header("Location: ./AdminPage.php");
         exit();

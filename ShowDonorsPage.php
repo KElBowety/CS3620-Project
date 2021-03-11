@@ -108,7 +108,7 @@ echo $pageContents[3][2];
                 echo "<td>".$TypeToArray[$record['subscriptionType']]."</td>";
                 echo "<td>".$record['subscriptionAmount']."</td>";
                 echo "<td>".$record['lastPayment']."</td>";
-                echo "<td><button type='button' class='btn btn-warning'>تعديل</button></td>";
+                echo "<td> <a href='./updateDonorsPage.php?donorId=".$record['id']."'><button type='button' class='btn btn-warning'>تعديل</button></a></td>";
                 echo "<td><button type='button' class='btn btn-danger'>حذف</button></td>";
                 echo"</tr>";
             }

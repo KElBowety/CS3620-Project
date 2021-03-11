@@ -35,6 +35,7 @@ if(isset($_POST)) {
         $obj->setEntryDate(date(DATE_RFC2822));
 
         array_push($_SESSION['donations'], $obj);
+        print_r( $obj);
     }
     else {
         $_SESSION['donationError'] = true;

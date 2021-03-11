@@ -3,7 +3,7 @@
 require_once('DonorWithAccount.php');
 session_start();
 
-if (isset($_POST['id']) || isset($_POST['subscriptionType']) || isset(($_POST['subscriptionValue']))) {
+if (isset($_POST['id']) && isset($_POST['subscriptionType']) && isset($_POST['subscriptionValue'])) {
     $Donor = new DonorWithAccount();
 
     if (!$Donor->setId($_POST['id'])) {
