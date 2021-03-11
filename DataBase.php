@@ -3,7 +3,7 @@
 class DataBase
 {
 
-    public static function ExcuteQuery($query)
+    public static function ExcuteQuery($query): bool
     {
         $con = mysqli_connect('localhost','root','');
         mysqli_select_db($con, 'ShobraOrg');
@@ -20,7 +20,7 @@ class DataBase
         }
     }
 
-    public static function ExcuteRetreiveQuery($query)
+    public static function ExcuteRetreiveQuery($query): bool|array
     {
         $con = mysqli_connect('localhost','root','');
         mysqli_select_db($con, 'ShobraOrg');
