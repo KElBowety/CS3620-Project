@@ -1,6 +1,5 @@
 <?php
 require_once 'IRegistrationStrategy.php';
-require_once('DataBase.php');
 
 class AdminRegistrationStrategy implements IRegistrationStrategy
 {

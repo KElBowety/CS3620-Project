@@ -57,7 +57,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
 
 
-    public function getType(): string
+    public function getType(): int
     {
         return $this->type;
     }
