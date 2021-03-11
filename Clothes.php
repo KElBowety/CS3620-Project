@@ -2,7 +2,7 @@
 
 require_once 'Item.php';
 
-class Clothes extends Item implements IValidation,IAddToDB
+class Clothes extends Item
 {
     private string $size;
 

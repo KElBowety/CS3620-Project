@@ -2,5 +2,5 @@
 
 interface IRegistrationStrategy
 {
-    public function register($postData) : bool;
+    public function register($password) : bool;
 }

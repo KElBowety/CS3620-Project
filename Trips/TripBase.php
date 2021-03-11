@@ -17,12 +17,12 @@ abstract class TripBase implements IAddToDB
         return $this->id;
     }
 
-    public function setId(int $id)
+    public function setId(int $id) : void
     {
         $this->id = $id;
     }
 
-    public function setCost(float $cost)
+    public function setCost(float $cost) : void
     {
         if($cost > 0)
         {
@@ -30,7 +30,7 @@ abstract class TripBase implements IAddToDB
         }
     }
 
-    public function setDescription(string $description)
+    public function setDescription(string $description) : void
     {
         $this->description = $description;
     }

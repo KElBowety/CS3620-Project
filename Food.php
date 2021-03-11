@@ -2,7 +2,7 @@
 
 require_once 'Item.php';
 
-class Food extends Item implements IValidation,IAddToDB
+class Food extends Item
 {
     private int $validationPeriod;
     function isValid(): bool
