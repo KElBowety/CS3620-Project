@@ -32,7 +32,7 @@ class Clothes extends Item
         $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name','$this->quantity','$this->entryDate','3','$this->itemValue')";
         $_SESSION['errorMessage']=$query;
         DataBase::ExcuteQuery($query);
-        header("Location: ./confirmDonationPage.php");
+        //header("Location: ./confirmDonationPage.php");
         $query="SELECT MAX(id) FROM items";
         $temp=DataBase::ExcuteRetreiveQuery($query);
         $this->id=$temp[0][0];
