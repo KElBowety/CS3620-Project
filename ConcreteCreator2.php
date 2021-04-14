@@ -1,11 +1,11 @@
 <?php
-
-
+require_once "Food.php";
+require_once "Creator.php";
 class ConcreteCreator2 extends Creator
 {
 
-    public function factoryMethod()
+    public function factoryMethod():  Item
     {
-        return new ConcreteProduct2();
+        return new Food();
     }
 }
