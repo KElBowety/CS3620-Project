@@ -8,7 +8,7 @@ class Clothes extends Item
 
     function isValid(): bool
     {
-        // TODO: Implement isValid() method.
+        return true;
     }
 
     function calculateAge(): int
@@ -16,15 +16,7 @@ class Clothes extends Item
         // TODO: Implement calculateAge() method.
     }
 
-    function donate(): bool
-    {
-        parent::donate();
-        if ($this->addToDB())
-            return true;
 
-        return false;
-
-    }
 
 
     function addToDB(): bool
@@ -43,6 +35,7 @@ class Clothes extends Item
             return false;
         }
         $query="INSERT INTO clothes (inkindId, size) VALUES('$id','$this->size')";
+        $_SESSION['errorMessage'] = $query;
         $id=DataBase::ExcuteidQuery($query);
         if ($id==false)
         {

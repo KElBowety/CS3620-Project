@@ -58,7 +58,8 @@ class Food extends Item
         {
             return false;
         }
-        $query="INSERT INTO clothes (inkindId, validationPeriod) VALUES('$id','$this->validationPeriod')";
+        $query="INSERT INTO food (inkindId, validationPeriod) VALUES('$id','$this->validationPeriod')";
+
         $id=DataBase::ExcuteidQuery($query);
         if ($id==false)
         {

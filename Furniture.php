@@ -56,7 +56,7 @@ class Furniture extends Item
         {
             return false;
         }
-        $query="INSERT INTO clothes (inkindId, isNew) VALUES('$id','$this->isNew')";
+        $query="INSERT INTO furniture (inkindId, isNew) VALUES('$id','$this->isNew')";
         $id=DataBase::ExcuteidQuery($query);
         if ($id==false)
         {
