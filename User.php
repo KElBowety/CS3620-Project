@@ -222,7 +222,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 public function showAllData()
 
     {
-        $query="SELECT users.id, name, userName,password,registerationDate,LastSignIn, Users.type FROM people INNER JOIN users ON users.id = people.id;";
+        $query="SELECT  human.id,name, userName,password,regesterationDate,LastSignIn, Users.type FROM human INNER JOIN users ON users.humanId = human.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);
         if ($result==false)
             return false;

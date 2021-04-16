@@ -110,7 +110,7 @@ echo $pageContents[3][2];
                         echo "<td>".$TypeToArray[$record['type']]."</td>";
                         echo "<td>".$record['userName']."</td>";
                         echo "<td>".$record['password']."</td>";
-                        echo "<td>".$record['registerationDate']."</td>";
+                        echo "<td>".$record['regesterationDate']."</td>";
                         echo "<td>".$record['LastSignIn']."</td>";
                         echo "<td><a href='./DeleteUserPage.php?userId=".$record['id']."'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
                         echo"</tr>";
