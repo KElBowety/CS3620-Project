@@ -6,6 +6,8 @@ class Financial implements IDonnable,IAddToDB
 {
     private float $amount;
     private int $id;
+    private string $currency;
+    private string $date;
 
     public function donate(): bool
     {
@@ -13,6 +15,18 @@ class Financial implements IDonnable,IAddToDB
             return true;
 
         return false;
+    }
+
+    public function setCurrency(string $cur): bool
+    {
+        if ($cur==null)
+            return false;
+        $this->currency=$cur;
+        return true;
+    }
+    public function getCurrency(): string
+    {
+        return $this->currency;
     }
 
     public function getValue(): float
@@ -29,11 +43,13 @@ class Financial implements IDonnable,IAddToDB
 
     function addToDB(): bool
     {
-        $query="INSERT INTO entries (amount, type ) VALUES('$this->amount','1')";
-        DataBase::ExcuteQuery($query);
-        $query="SELECT MAX(id) FROM entries";
-        $temp=DataBase::ExcuteRetreiveQuery($query);
-        $this->id=$temp[0][0];
+        $query="INSERT INTO financial (value, type, entryDate) VALUES('$this->amount','1',now())";
+        $this->id=DataBase::ExcuteIdQuery($query);
+        if ($this->id== false)
+            return false;
+        $query="INSERT INTO financial (itemId, currency ) VALUES('$this->id','$this->currency')";
+        if (DataBase::ExcuteQuery($query)==false)
+            return false;
         return true;
     }
     public function getId():int
