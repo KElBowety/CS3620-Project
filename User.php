@@ -56,7 +56,6 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
      */
 
 
-
     public function getType(): int
     {
         return $this->type;
@@ -83,7 +82,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
      */
     public function setUserName(string $userName): bool
     {
-        if ($userName=="" || $userName==null)
+        if ($userName == "" || $userName == null)
             return false;
 
         $this->userName = $userName;
@@ -103,7 +102,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
      */
     public function setPassword(string $password): bool
     {
-        if ($password=="" || $password==null)
+        if ($password == "" || $password == null)
             return false;
         $this->password = $password;
         return true;
@@ -127,16 +126,15 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function logIn(): bool
     {
-        $query="SELECT * FROM users WHERE userName='$this->userName' AND password='$this->password' ";
-        $result=DataBase::ExcuteRetreiveQuery($query);
-        if ($result==false)
-        {
+        $query = "SELECT * FROM users WHERE userName='$this->userName' AND password='$this->password' ";
+        $result = DataBase::ExcuteRetreiveQuery($query);
+        if ($result == false) {
             return false;
         }
-        $this->regesterationDate=$result[0][2];
-        $this->lastSignIn=date('Y-m-d H:i:s');
-        $this->id=$result[0][4];
-        $this->type=$result[0][5];
+        $this->regesterationDate = $result[0][2];
+        $this->lastSignIn = date('Y-m-d H:i:s');
+        $this->id = $result[0][4];
+        $this->type = $result[0][5];
         $this->loadAllowedPages();
         $this->updateInDB();
 
@@ -145,19 +143,19 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function setStrategy(int $type)
     {
-        if ($type>2||$type<=0)
+        if ($type > 2 || $type <= 0)
             return false;
-        if ($type==1)
-        $this->registrationStrategy = new AdminRegistrationStrategy();
+        if ($type == 1)
+            $this->registrationStrategy = new AdminRegistrationStrategy();
         else
-        $this->registrationStrategy = new AccountantRegistrationStrategy();
+            $this->registrationStrategy = new AccountantRegistrationStrategy();
     }
 
     public function checkRegister($password): bool
     {
-       if ($this->registrationStrategy==null)
-           return false;
-       return ($this->registrationStrategy->register($password));
+        if ($this->registrationStrategy == null)
+            return false;
+        return ($this->registrationStrategy->register($password));
     }
 
     /**
@@ -189,8 +187,8 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
      */
     public function loadAllowedPages(): void
     {
-        $query="SELECT pageId FROM pagepermissions WHERE userId='$this->type'";
-        $temp=DataBase::ExcuteRetreiveQuery($query);
+        $query = "SELECT pageId FROM pagepermissions WHERE userId='$this->type'";
+        $temp = DataBase::ExcuteRetreiveQuery($query);
 
         foreach ($temp as $value) {
             $this->allowedPages[] = $value[0];
@@ -201,25 +199,25 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function addToDB(): bool
     {
-        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '1')";
-        $check1=DataBase::ExcuteQuery($query);
-        if (!$check1)
-        {
+        $query = "INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '1')";
+        $check1 = DataBase::ExcuteQuery($query);
+        if (!$check1) {
             return false;
         }
-        $this->regesterationDate=date('Y-m-d H:i:s');
-        $query="INSERT INTO users(userName, password, registerationDate, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
-        $check2=DataBase::ExcuteQuery($query);
+        $this->regesterationDate = date('Y-m-d H:i:s');
+        $query = "INSERT INTO users(userName, password, registerationDate, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
+        $check2 = DataBase::ExcuteQuery($query);
 
-        if (!$check2)
-        {
+        if (!$check2) {
             $this->removeWrongInserted();
             return false;
         }
         return true;
     }
 
-    public function showAllData()
+
+public function showAllData()
+
     {
         $query="SELECT users.id, name, userName,password,registerationDate,LastSignIn, Users.type FROM people INNER JOIN users ON users.id = people.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);
@@ -228,6 +226,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
         return $result;
 
     }
+
 
     public function updateInDB(): bool
     {

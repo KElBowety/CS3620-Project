@@ -1,5 +1,9 @@
 <?php
+require_once "Context.php";
+require_once "LogOutState.php";
 session_start();
+$context = new Context(new LogOutState());
+$context->request1();
 if(isset( $_SESSION["LoginUser"])) {
 
     unset( $_SESSION["LoginUser"]);

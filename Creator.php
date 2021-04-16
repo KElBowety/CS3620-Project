@@ -9,4 +9,14 @@ abstract class Creator
         $result="Donating " . $donation->donate();
         return $result;
     }
+
+    public function someOperation()
+    {
+        $Item = $this->factoryMethod();
+        // Now, use the product.
+        $result = "Creator: The same creator's code has just worked with " ;
+           // $Item->getValue();
+
+        return $Item;
+    }
 }

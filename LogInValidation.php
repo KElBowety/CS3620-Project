@@ -1,7 +1,10 @@
 <?php
 require_once('User.php');
+require_once "Context.php";
+require_once "LoginState.php";
 session_start();
-
+$context = new Context(new LoginState());
+$context->request2();
 
 if (isset($_POST['userName']) && isset($_POST['password'])) {
 
