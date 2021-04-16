@@ -13,5 +13,7 @@ class UserUndo implements Undo
     {
         $query="DELETE FROM users ORDER BY id DESC LIMIT 1";
         DataBase::ExcuteQuery($query);
+        $query="DELETE FROM human ORDER BY id DESC LIMIT 1";
+        DataBase::ExcuteQuery($query);
     }
 }

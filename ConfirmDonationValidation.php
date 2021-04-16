@@ -46,21 +46,14 @@ if(isset($_POST['idNumber'])&& isset($_POST['phone'])&&isset($_POST['name'])){
     {
 
         $obj=unserialize($myarr[$i]);
-        $total=$total+$obj->getValue();
-        $dd= new DonationDetails();
-        $dd->setDonnable($obj);
-        $donationDetails[]=$dd;
+        $donationDetails[]=$obj;
     }
-    print_r($donationDetails);
-    $Donation->setValue($total);
     $Donation->setDate(date('Y-m-d H:i:s'));
     $donor= new TempDonor();
     $donor->setName($_POST['name']);
     $donor->setPhoneNumber($_POST['phone']);
-    $donor->setId($_POST['idNumber']);
-    print_r($donor);
+    $donor->setNationalId($_POST['idNumber']);
     $donor->addToDB();
-    echo $total;
     $Donation->setDonorId($donor->getId());
     $Donation->donate($donationDetails);
     unset($_SESSION['donations']);

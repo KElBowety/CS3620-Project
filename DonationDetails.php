@@ -12,26 +12,23 @@ class DonationDetails implements IAddToDB
 {
     private int $id;
     private int $donationId;
-    private float $value;
-    private int $donnableId;
-    private int $type;
-    private $donnable;
+    private int $itemId;
 
-    /**
-     * @return IDonnable
-     */
-    public function getDonnable(): IDonnable
-    {
-        return $this->donnable;
-    }
-
-    /**
-     * @param IDonnable $donnable
-     */
-    public function setDonnable(IDonnable $donnable): void
-    {
-        $this->donnable = $donnable;
-    }
+//    /**
+//     * @return IDonnable
+//     */
+//    public function getDonnable(): IDonnable
+//    {
+//        return $this->donnable;
+//    }
+//
+//    /**
+//     * @param IDonnable $donnable
+//     */
+//    public function setDonnable(IDonnable $donnable): void
+//    {
+//        $this->donnable = $donnable;
+//    }
 
 
     /**
@@ -53,6 +50,23 @@ class DonationDetails implements IAddToDB
         return true;
     }
 
+    public function getItemId(): int
+    {
+        return $this->itemId;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setItemId(int $id): bool
+    {
+        if ($id<=0||$id==null)
+            return false;
+        $this->itemId = $id;
+        return true;
+    }
+
+
     /**
      * @return int
      */
@@ -72,51 +86,32 @@ class DonationDetails implements IAddToDB
         return true;
     }
 
-    /**
-     * @return float
-     */
-    public function getValue(): float
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param float $value
-     */
-    public function setValue(float $value): bool
-    {
-        if ($value<=0||$value==null)
-            return false;
-        $this->value = $value;
-        return true;
-    }
-
-    function donate(): bool
-    {
-        if($this->donnable==null)
-            return false;
-        $this->donnable->donate();
-
-        $this->donnableId=$this->donnable->getId();
-        $this->value=$this->donnable->getValue();
-        if ($this->donnable instanceof Item)
-        {
-            $this->type=2;
-        }else
-        {
-            $this->type=1;
-        }
-        $this->addToDB();
-        return true;
+//    /**
+//     * @return float
+//     */
+//    public function getValue(): float
+//    {
+//        return $this->value;
+//    }
+//
+//    /**
+//     * @param float $value
+//     */
+//    public function setValue(float $value): bool
+//    {
+//        if ($value<=0||$value==null)
+//            return false;
+//        $this->value = $value;
+//        return true;
+//    }
 
 
-    }
 
     function addToDB(): bool
     {
-        $this->donnableId=$this->donnable->getId();
-        $query="INSERT INTO donationdetails (donationID, value, type, donnableID) VALUES('$this->donationId','$this->value','$this->type','$this->donnableId')";
-        DataBase::ExcuteQuery($query);
+        $query="INSERT INTO donationdetails (donationID, itemId) VALUES('$this->donationId','$this->itemId')";
+        if(DataBase::ExcuteQuery($query)==false)
+            return false;
         return true;
     }
 }

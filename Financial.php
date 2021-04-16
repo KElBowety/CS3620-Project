@@ -43,7 +43,7 @@ class Financial implements IDonnable,IAddToDB
 
     function addToDB(): bool
     {
-        $query="INSERT INTO financial (value, type, entryDate) VALUES('$this->amount','1',now())";
+        $query="INSERT INTO item (value, type, entryDate) VALUES('$this->amount','1',now())";
         $this->id=DataBase::ExcuteIdQuery($query);
         if ($this->id== false)
             return false;

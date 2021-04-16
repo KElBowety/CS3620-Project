@@ -8,6 +8,7 @@ require_once ('DataBase.php');
 require_once ('IShowAll.php');
 require_once ('IUpdateInDB.php');
 require_once ('IRemoveFromDB.php');
+require_once ('ProxyUserInterface.php');
 
 class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB,ProxyUserInterface
 {
@@ -128,13 +129,14 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
     {
         $query = "SELECT * FROM users WHERE userName='$this->userName' AND password='$this->password' ";
         $result = DataBase::ExcuteRetreiveQuery($query);
+
         if ($result == false) {
             return false;
         }
         $this->regesterationDate = $result[0][2];
         $this->lastSignIn = date('Y-m-d H:i:s');
-        $this->id = $result[0][4];
-        $this->type = $result[0][5];
+        $this->id = $result[0]['humanId'];
+        $this->type = $result[0]['type'];
         $this->loadAllowedPages();
         $this->updateInDB();
 
@@ -199,15 +201,16 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function addToDB(): bool
     {
-        $query = "INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '1')";
-        $check1 = DataBase::ExcuteQuery($query);
-        if (!$check1) {
+        $query="INSERT INTO human(name, type) VALUES ('$this->name', '3')";
+        $check1=DataBase::ExcuteIdQuery($query);
+        if ($check1==false)
+        {
             return false;
         }
+        $this->id=$check1;
         $this->regesterationDate = date('Y-m-d H:i:s');
-        $query = "INSERT INTO users(userName, password, registerationDate, id, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
+        $query = "INSERT INTO users(userName, password, registerationDate, humanId, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
         $check2 = DataBase::ExcuteQuery($query);
-
         if (!$check2) {
             $this->removeWrongInserted();
             return false;

@@ -45,13 +45,25 @@ class Food extends Item
 
     function addToDB(): bool
     {
-        $query="INSERT INTO items (name, quantity, entryDate, type,itemPrice) VALUES('$this->name ', '$this->quantity','$this->entryDate','2', '$this->itemValue')";
-        DataBase::ExcuteQuery($query);
-        $query="SELECT MAX(id) FROM items";
-        $temp=DataBase::ExcuteRetreiveQuery($query);
-        $this->id=$temp[0][0];
-        $query="INSERT INTO food (id, validationPeriod) VALUES('$this->id','$this->validationPeriod')";
-        DataBase::ExcuteQuery($query);
+        $query="INSERT INTO item(entryDate, type,value) VALUES('$this->entryDate','2','$this->itemValue')";
+        $id=DataBase::ExcuteidQuery($query);
+        if ($id==false)
+        {
+            return false;
+        }
+        $this->id=$id;
+        $query="INSERT INTO inkind (itemId, itemValue, quantity, type,name ) VALUES('$this->id','$this->itemValue','$this->quantity','1','$this->name')";
+        $id=DataBase::ExcuteidQuery($query);
+        if ($id==false)
+        {
+            return false;
+        }
+        $query="INSERT INTO clothes (inkindId, validationPeriod) VALUES('$id','$this->validationPeriod')";
+        $id=DataBase::ExcuteidQuery($query);
+        if ($id==false)
+        {
+            return false;
+        }
         return true;
     }
 

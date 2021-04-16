@@ -37,7 +37,7 @@ if (isset($_POST['id'])||isset($_POST['name'])||isset($_POST['userName'])||isset
     $User->setPassword($_POST['password']);
     $User->setId($_POST['id']);
     if (!$User->addToDB()){
-        $_SESSION['errorMessage'] = "إسم المستخدم أو الرقم القومي تم إدخالهم من قبل";
+        $_SESSION['errorMessage'] = "إسم المستخدم تم إدخاله من قبل";
         header("Location: ./addUserPage.php");
         exit();
     }

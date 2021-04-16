@@ -1,12 +1,18 @@
 <?php
 require_once 'IAddToDB.php';
+require_once 'DonationDetails.php';
+require_once 'Clothes.php';
+require_once 'Furniture.php';
+require_once 'Food.php';
+require_once 'Financial.php';
+require_once 'Item.php';
 
 class Donation implements IAddToDB
 {
     private int $id;
     private int $donorId;
     private string $date;
-    private float $value;
+//    private float $value;
 
     /**
      * @return int
@@ -68,25 +74,25 @@ class Donation implements IAddToDB
         return true;
     }
 
-    /**
-     * @return float
-     */
-    public function getValue(): float
-    {
-        return $this->value;
-    }
-
-    /**
-     * @param float $value
-     * @return Donation
-     */
-    public function setValue(float $value): bool
-    {
-        if($value<=0||$value==null)
-            return false;
-        $this->value = $value;
-        return true;
-    }
+//    /**
+//     * @return float
+//     */
+//    public function getValue(): float
+//    {
+//        return $this->value;
+//    }
+//
+//    /**
+//     * @param float $value
+//     * @return Donation
+//     */
+//    public function setValue(float $value): bool
+//    {
+//        if($value<=0||$value==null)
+//            return false;
+//        $this->value = $value;
+//        return true;
+//    }
 
     public function donate($donationDetails): bool
     {
@@ -94,14 +100,16 @@ class Donation implements IAddToDB
         {
             return false;
         }
-        //TODO: calculate value from the array first here
         $this->addToDB();
 
         for ($i=0;$i<count($donationDetails);$i++)
         {
-            $value=$donationDetails[$i];
+            $item=$donationDetails[$i];
+            $item->addToDB();
+            $value= new DonationDetails();
             $value->setDonationId($this->id);
-            $value->donate();
+            $value->setItemId($item->getId());
+            $value->addToDB();
         }
         return true;
 
@@ -114,12 +122,11 @@ class Donation implements IAddToDB
 
     function addToDB(): bool
     {
-        $query="INSERT INTO donations (donorId, date , value) VALUES('$this->donorId ', '$this->date','$this->value')";
-        $_SESSION['errorMessage']=$query;
-        DataBase::ExcuteQuery($query);
-        $query="SELECT MAX(id) FROM donations";
-        $temp=DataBase::ExcuteRetreiveQuery($query);
-        $this->id=$temp[0][0];
+        $query="INSERT INTO donations (donorId, date) VALUES('$this->donorId ', '$this->date')";
+        $id=DataBase::ExcuteIdQuery($query);
+        if ($id==false)
+            return false;
+        $this->id=$id;
         return true;
 
     }

@@ -6,7 +6,7 @@ require_once 'DataBase.php';
 class TempDonor extends Human implements IAddToDB
 {
 private string $phoneNumber;
-
+private string $nationalId;
     /**
      * @return int
      */
@@ -23,6 +23,22 @@ private string $phoneNumber;
         if ($id<=0 || $id==null)
             return false;
         $this->id = $id;
+        return true;
+    }
+
+    public function getNationalId(): int
+    {
+        return $this->nationalId;
+    }
+
+    /**
+     * @param int $id
+     */
+    public function setNationalId(int $id): bool
+    {
+        if ($id<=0 || $id==null)
+            return false;
+        $this->nationalId = $id;
         return true;
     }
 
@@ -73,18 +89,23 @@ private string $phoneNumber;
 
     public function addToDB(): bool
     {
-        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '2')";
-        $check1=DataBase::ExcuteQuery($query);
-        if (!$check1)
+        $query="INSERT INTO human(name, type) VALUES ('$this->name', '1')";
+        $check1=DataBase::ExcuteIdQuery($query);
+        if ($check1==false)
         {
             return false;
         }
-        $query="INSERT INTO tempdonors(phoneNumber, id) VALUES ('$this->phoneNumber','$this->id')";
+        $this->id=$check1;
+        $query="INSERT INTO tempdonor(phoneNumber,nationalId,humanId) VALUES ('$this->phoneNumber',$this->nationalId,'$this->id')";
         $check2=DataBase::ExcuteQuery($query);
-        if (!$check2)
+        if ($check2==false)
         {
             return false;
         }
         return true;
+    }
+
+    public function showAllData()
+    {
     }
 }
