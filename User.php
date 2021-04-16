@@ -9,7 +9,7 @@ require_once ('IShowAll.php');
 require_once ('IUpdateInDB.php');
 require_once ('IRemoveFromDB.php');
 
-class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB
+class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB,ProxyUserInterface
 {
     private string $userName;
     private string $password;
@@ -276,5 +276,10 @@ public function showAllData()
             }
         }
         return false;
+    }
+
+    public function getUsersFiltered()
+    {
+        // TODO: Implement getUsersFiltered() method.
     }
 }
