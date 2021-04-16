@@ -159,17 +159,18 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
 
     public function addToDB(): bool
     {
-        $query="INSERT INTO people (id, name, type) VALUES ('$this->id','$this->name', '3')";
-        $check1=DataBase::ExcuteQuery($query);
-        if (!$check1)
+        $query="INSERT INTO human(name, type) VALUES ('$this->name', '2')";
+        $check1=DataBase::ExcuteIdQuery($query);
+        if ($check1==false)
         {
             return false;
         }
-        $query="INSERT INTO donoraccounts(age, address, subscriptionType, subscriptionAmount, id) VALUES ('$this->age','$this->address','$this->subscriptionType','$this->subscriptionAmount','$this->id')";
+        $this->id=$check1;
+        $query="INSERT INTO donorwithaccount(age, city, subscriptionType, subscriptionAmount, humanId) VALUES ('$this->age','$this->address','$this->subscriptionType','$this->subscriptionAmount','$this->id')";
         $check2=DataBase::ExcuteQuery($query);
         if (!$check2)
         {
-//            $this->removeWrongInserted();
+            $this->removeWrongInserted();
             return false;
         }
         return true;
@@ -177,7 +178,7 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
 
     public function showAllData()
     {
-        $query="SELECT people.id, name, age,address,subscriptionType,subscriptionAmount, lastPayment FROM people INNER JOIN donoraccounts ON donoraccounts.id = people.id;";
+        $query="SELECT human.id, name, age,city,subscriptionType,subscriptionAmount, lastPayment FROM human INNER JOIN donorWithAccount ON donorWithAccount.id = human.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);
         if ($result==false)
             return false;
@@ -200,5 +201,11 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
         DataBase::ExcuteQuery($query);
         return true;
     }
+    private function removeWrongInserted(): void
+    {
+        $query= "DELETE FROM human WHERE id='$this->id'";
+        DataBase::ExcuteQuery($query);
+    }
+
 
 }

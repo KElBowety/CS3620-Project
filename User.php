@@ -248,7 +248,7 @@ public function showAllData()
     }
     private function removeWrongInserted(): void
     {
-        $query= "DELETE FROM people WHERE id='$this->id'";
+        $query= "DELETE FROM human WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
     }
 

@@ -1,5 +1,6 @@
 <?php
 require_once "DonorWithAccount.php";
+require_once "Undo.php";
 
 class DonationUndo implements Undo
 {
@@ -11,7 +12,9 @@ class DonationUndo implements Undo
     }
     public function execute(): void
     {
-        $query="DELETE FROM donoraccounts ORDER BY id DESC LIMIT 1";
+        $query="DELETE FROM donorWithAccount ORDER BY id DESC LIMIT 1";
+        DataBase::ExcuteQuery($query);
+        $query="DELETE FROM human ORDER BY id DESC LIMIT 1";
         DataBase::ExcuteQuery($query);
     }
 }

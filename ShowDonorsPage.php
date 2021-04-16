@@ -72,9 +72,11 @@ $Donor = $Donor->showAllData();
 
         <div class="container">
             <h1 class="text-white text-center"> قائمة الإشتراكات </h1>
+            <div class="justify-content-center text-center">
+            echo "<a  href='./undoDonorsPage.php'><button type='button' class='class="text-center" btn btn-warning'>تراجع عن آخر تسجيل</button></a>";
+            </div>
 
             <div class="row" style="padding-top: 10%; padding-bottom: 10%">
-
 
 
 
@@ -90,29 +92,31 @@ $Donor = $Donor->showAllData();
                             <th scope="col">قيمة الإشتراك</th>
                             <th scope="col">تاريخ آخر دفع</th>
                             <th scope="col">تعديل</th>
-                            <th scope="col">حذف</th>
 
 
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        foreach ($Donor as $record) {
-                            echo "<tr class='table-light'>";
-                            echo "<td>" . $record['id'] . "</td>";
-                            echo "<td>" . $record['name'] . "</td>";
-                            echo "<td>" . $record['age'] . "</td>";
-                            echo "<td>" . $record['address'] . "</td>";
-                            echo "<td>" . $TypeToArray[$record['subscriptionType']] . "</td>";
-                            echo "<td>" . $record['subscriptionAmount'] . "</td>";
-                            echo "<td>" . $record['lastPayment'] . "</td>";
-                            echo "<td> <a href='./updateDonorsPage.php?donorId=" . $record['id'] . "'><button type='button' class='btn btn-warning'>تعديل</button></a></td>";
-                            echo "<td> <a href='./undoDonorsPage.php'><button type='button' class='btn btn-warning'>مسح تسجيل الاخير</button></a></td>";
-                            echo "</tr>";
+                        if ($Donor!=false) {
+                            foreach ($Donor as $record) {
+                                echo "<tr class='table-light'>";
+                                echo "<td>" . $record['id'] . "</td>";
+                                echo "<td>" . $record['name'] . "</td>";
+                                echo "<td>" . $record['age'] . "</td>";
+                                echo "<td>" . $record['city'] . "</td>";
+                                echo "<td>" . $TypeToArray[$record['subscriptionType']] . "</td>";
+                                echo "<td>" . $record['subscriptionAmount'] . "</td>";
+                                echo "<td>" . $record['lastPayment'] . "</td>";
+                                echo "<td> <a href='./updateDonorsPage.php?donorId=" . $record['id'] . "'><button type='button' class='btn btn-warning'>تعديل</button></a></td>";
+                                echo "</tr>";
+                            }
                         }
+
                         ?>
                     </tbody>
                 </table>
+
 
             </div>
         </div>
