@@ -11,6 +11,7 @@ if(!isset($_SESSION['donations'])) {
 if(isset($_POST)) {
     if (isset($_POST['value'])){
         $financial= new Financial();
+        $financial->setCurrency("EGP");
         if (!$financial->setAmount($_POST['value'])){
             $_SESSION['errorMessage'] = "قيمة غير صالحة";
             header("Location: ./addDonationPage.php");
