@@ -151,17 +151,19 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function addToDB(): bool
     {
-        $query="INSERT INTO human(name, type) VALUES ('$this->name', '3')";
+        $query="INSERT INTO human(name, type) VALUES ('$this->name','3')";
         $check1=DataBase::ExcuteIdQuery($query);
         if ($check1==false)
         {
+            $_SESSION['errorMessage'] = "first"+$query;
             return false;
         }
         $this->id=$check1;
         $this->regesterationDate = date('Y-m-d H:i:s');
-        $query = "INSERT INTO users(userName, password, registerationDate, humanId, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
+        $query = "INSERT INTO users(userName, password, regesterationDate, humanId, type) VALUES ('$this->userName','$this->password','$this->regesterationDate','$this->id','$this->type')";
         $check2 = DataBase::ExcuteQuery($query);
         if (!$check2) {
+            $_SESSION['errorMessage'] = "second"+$query;
             $this->removeWrongInserted();
             return false;
         }
@@ -190,7 +192,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
     {
         $query= "DELETE FROM users WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
-        $query= "DELETE FROM people WHERE id='$this->id'";
+        $query= "DELETE FROM human WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
         return true;
     }

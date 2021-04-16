@@ -18,6 +18,9 @@ $users = User::showAllData();
 $view = new UserView($pageContents, $users, $TypeToArray);
 
 $view->showHeader();
-$view->showUsers();
-$view->showAddUser();
+if (isset($_GET['type'])&&$_GET['type']=="show")
+    $view->showUsers();
+else
+    $view->showAddUser();
+
 $view->showFooter();
