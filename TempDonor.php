@@ -104,8 +104,4 @@ private string $nationalId;
         }
         return true;
     }
-
-    public function showAllData()
-    {
-    }
 }

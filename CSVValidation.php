@@ -25,7 +25,7 @@ if(isset($_POST)){
         $User->setStrategy($_POST['type']);
         if (!$User->addToDB()){
             $_SESSION['errorMessage'] = "إسم المستخدم أو الرقم القومي تم إدخالهم من قبل";
-            header("Location: ./addUserPage.php");
+            header("Location: ./UserController.php");
             exit();
         }
         else{
@@ -35,7 +35,7 @@ if(isset($_POST)){
             $added->attach(new SMSConfirmer());
             $added->notify();
             $_SESSION['successMessage'] = "تم تسجيل مستخدم جديد بنجاح";
-            header("Location: ./showUsersPage.php");
+            header("Location: ./UserController.php");
             exit();
         }
 

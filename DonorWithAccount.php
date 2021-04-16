@@ -176,7 +176,7 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
         return true;
     }
 
-    public function showAllData()
+    public static function showAllData()
     {
         $query="SELECT human.id, name, age,city,subscriptionType,subscriptionAmount, lastPayment FROM human INNER JOIN donorWithAccount ON donorWithAccount.id = human.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);

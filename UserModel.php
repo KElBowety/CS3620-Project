@@ -10,7 +10,7 @@ require_once ('IUpdateInDB.php');
 require_once ('IRemoveFromDB.php');
 require_once ('ProxyUserInterface.php');
 
-class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB,ProxyUserInterface
+class UserModel extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromDB,ProxyUserInterface
 {
     private string $userName;
     private string $password;
@@ -196,7 +196,7 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
     }
     private function removeWrongInserted(): void
     {
-        $query= "DELETE FROM human WHERE id='$this->id'";
+        $query= "DELETE FROM people WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
     }
 

@@ -10,7 +10,7 @@ if (isset($_POST['id'])||isset($_POST['name'])||isset($_POST['userName'])||isset
     if($_POST['password']!=$_POST['password2'])
     {
         $_SESSION['errorMessage']="كلمتا السر غير متطابقتين";
-        header("Location: ./addUserPage.php");
+        header("Location: ./UserController.php");
         exit();
     }
     $User= new User();
@@ -23,12 +23,12 @@ if (isset($_POST['id'])||isset($_POST['name'])||isset($_POST['userName'])||isset
     {
         if ($_POST['type']==1) {
             $_SESSION['errorMessage'] = "لا بد أن تكون كلمة السر أكبر من 8 حروف وتحتوي على حرف capital وحرف small ورقم على الأقل";
-            header("Location: ./addUserPage.php");
+            header("Location: ./UserController.php");
             exit();
         }
         else{
             $_SESSION['errorMessage'] = "لا بد أن تكون كلمة السر أكبر من 6 حروف وتحتوي على حرف capital وحرف small ";
-            header("Location: ./addUserPage.php");
+            header("Location: ./UserController.php");
             exit();
         }
     }
@@ -38,7 +38,7 @@ if (isset($_POST['id'])||isset($_POST['name'])||isset($_POST['userName'])||isset
     $User->setId($_POST['id']);
     if (!$User->addToDB()){
         $_SESSION['errorMessage'] = "إسم المستخدم تم إدخاله من قبل";
-        header("Location: ./addUserPage.php");
+        header("Location: ./UserController.php");
         exit();
     }
     else{
@@ -48,14 +48,14 @@ if (isset($_POST['id'])||isset($_POST['name'])||isset($_POST['userName'])||isset
         $added->attach(new SMSConfirmer());
         $added->notify();
         $_SESSION['successMessage'] = "تم تسجيل مستخدم جديد بنجاح";
-        header("Location: ./showUsersPage.php");
+        header("Location: ./UserController.php");
         exit();
     }
 
 }else
 {
     $_SESSION['errorMessage']="حدث خطأ";
-    header("Location: ./addUserPage.php");
+    header("Location: ./UserController.php");
     exit();
 
 }

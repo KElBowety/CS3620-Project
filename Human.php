@@ -14,8 +14,5 @@ abstract class Human
     {
         return $this->id;
     }
-
-abstract public function addToDB():bool;
-abstract public function showAllData();
 }
 ?>
