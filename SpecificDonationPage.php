@@ -17,6 +17,7 @@ if (!isset($_GET['donorId'])||!isset($_GET['donationId']))
 $pageContents = DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 $Donor = new TempDonor();
 $Donor->findById($_GET['donorId']);
+$total=0;
 
 ?>
 
@@ -113,13 +114,15 @@ echo $pageContents[3][2];
 
         </div>
         <?php echo"<h1 dir='rtl' class='text-white text-center'>  تبرعات عينية </h1>";?>
+
         <table class="table col-12" dir="rtl">
             <thead>
             <tr class="table-dark">
-                <th scope="col">كود التبرع</th>
-                <th scope="col">كود المتبرع</th>
-                <th scope="col">التاريخ</th>
-                <th scope="col">عرض</th>
+                <th scope="col">كود السلعة</th>
+                <th scope="col">اسم السلعة</th>
+                <th scope="col">قيمة السلعة</th>
+                <th scope="col">الكمية</th>
+                <th scope="col">اجمالى التبرع</th>
 
             </tr>
             </thead>
@@ -130,18 +133,59 @@ echo $pageContents[3][2];
             $result=DataBase::ExcuteRetreiveQuery($query);
 
 
+
             if ($result!=false) {
                 foreach ($result as $record) {
                     echo "<tr class='table-light'>";
                     echo "<td>" . $record['itemId'] . "</td>";
                     echo "<td>" . $record['name'] . "</td>";
                     echo "<td>" . $record['itemValue'] . "</td>";
+                    echo "<td>" . $record['quantity'] . "</td>";
+                    echo "<td>" . $record['quantity']*$record['itemValue']  . "</td>";
+                    $total+=$record['quantity']*$record['itemValue'];
                 }
             }
 
             ?>
             </tbody>
         </table>
+        <?php echo"<h1 dir='rtl' class='text-white text-center'>  اجمالى القيمة العينية: ".$total." </h1>"?>
+
+        <?php echo"<h1 dir='rtl' class='text-white text-center'>  تبرعات مالية </h1>";?>
+
+        <table class="table col-12" dir="rtl">
+            <thead>
+            <tr class="table-dark">
+                <th scope="col">كود المبلغ</th>
+                <th scope="col">المبلغ</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            $donationId=$_GET['donationId'];
+            $query="SELECT donationID,donationdetails.itemId,value from donationdetails INNER JOIN (SELECT item.id, value FROM item INNER JOIN financial WHERE item.id=financial.itemId) AS tab ON tab.id=donationdetails.itemId WHERE donationID=".$donationId;
+            $result=DataBase::ExcuteRetreiveQuery($query);
+            $total2=0;
+
+
+
+            if ($result!=false) {
+                foreach ($result as $record) {
+                    echo "<tr class='table-light'>";
+                    echo "<td>" . $record['itemId'] . "</td>";
+                    echo "<td>" . $record['value'] . "</td>";
+                    $total2+=$record['value'];
+                }
+            }
+
+            ?>
+            </tbody>
+        </table>
+        <?php echo"<h1 dir='rtl' class='text-white text-center'>  اجمالى القيمة المالية: ".$total2." </h1>"?>
+
+        <?php echo"<h1 dir='rtl' class='text-white text-center'>  اجمالى قيمة التبرع: ".$total+$total2." </h1>"?>
+
     </div>
 
 

@@ -71,9 +71,7 @@ echo $pageContents[3][2];
 
     <div class="container">
         <h1 class="text-white text-center"> قائمة التبرعات </h1>
-        <div class="justify-content-center text-center">
-            echo "<a  href='./undoDonorsPage.php'><button type='button' class='class="text-center" btn btn-warning'>تراجع عن آخر تسجيل</button></a>";
-        </div>
+
 
         <div class="row" style="padding-top: 10%; padding-bottom: 10%">
 
