@@ -76,7 +76,7 @@ echo $pageContents[3][2];
     <div  style="padding-top: 15%; padding-bottom: 15%">
 
 
-        <h1 class="text-white text-center">  غير مكتملة</h1>
+        <h1 class="text-white text-center"> جمعية شبرا الخير</h1>
     </div>
 
 
