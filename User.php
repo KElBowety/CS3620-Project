@@ -233,6 +233,16 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function getUsersFiltered()
     {
-        // TODO: Implement getUsersFiltered() method.
+        $arr=self::showAllData();
+        return $arr;
+        $admins=Array();
+//        $accountants=Array();
+//        foreach ($arr as $value)
+//        {
+//            if ($value['type']==5) {
+//                $admins[] = $value;
+//            }
+//        }
+        return $admins;
     }
 }

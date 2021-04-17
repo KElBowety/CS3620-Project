@@ -14,7 +14,8 @@ if(!isset($_SESSION["LoginUser"]))
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 $TypeToArray= array('1'=>'أدمن','2'=>'محاسب');
 $u=$_SESSION["LoginUser"];
-$users = User::showAllData();
+$users = new User();
+$users =$users->getUsersFiltered();
 $view = new UserView($pageContents, $users, $TypeToArray);
 
 $view->showHeader();
