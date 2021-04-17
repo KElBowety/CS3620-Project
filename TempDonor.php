@@ -3,7 +3,8 @@
 require_once 'IAddToDB.php';
 require_once 'Human.php';
 require_once 'DataBase.php';
-class TempDonor extends Human implements IAddToDB
+require_once 'IFindById.php';
+class TempDonor extends Human implements IAddToDB, IFindById
 {
 private string $phoneNumber;
 private string $nationalId;
@@ -102,6 +103,21 @@ private string $nationalId;
         {
             return false;
         }
+        return true;
+    }
+
+    function findById($id):bool
+    {
+        $query="SELECT  human.id,name, nationalId, phoneNumber FROM human INNER JOIN tempdonor ON tempdonor.humanId = human.id WHERE human.id=$id;";
+        $result=DataBase::ExcuteRetreiveQuery($query);
+        if (count($result)==0)
+        {
+            return false;
+        }
+        $this->id=$result[0]['id'];
+        $this->name=$result[0]['name'];
+        $this->nationalId=$result[0]['nationalId'];
+        $this->phoneNumber=$result[0]['phoneNumber'];
         return true;
     }
 }
