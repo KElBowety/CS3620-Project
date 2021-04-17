@@ -1,8 +1,8 @@
 <?php
 
-include_once 'Clothes.php';
-include_once 'Food.php';
-include_once 'Furniture.php';
+include_once 'ConcreteCreator1.php';
+include_once 'ConcreteCreator2.php';
+include_once 'ConcreteCreator3.php';
 
 session_start();
 
@@ -14,19 +14,25 @@ if(!isset($_SESSION['donations'])) {
 
 $obj = NULL;
 
+function creation(Creator $creator)
+{
+    $Item=$creator->someOperation();
+    return $Item;
+}
+
 if(isset($_POST)) {
     if ($_POST['donationType'] > 0 && $_POST['donationType'] < 4 && $_POST['value'] > 0 && $_POST['quantity'] > 0) {
         switch ($_POST['donationType']) {
             case 1:
-                $obj = new Clothes();
+                $obj = creation(new ConcreteCreator1());
                 $obj->setSize('M');
                 break;
             case 2:
-                $obj = new Food();
+                $obj = creation(new ConcreteCreator2());
                 $obj->setValidationPeriod(15);
                 break;
             case 3:
-                $obj = new Furniture();
+                $obj = creation(new ConcreteCreator3());
                 $obj->setIsNew(true);
                 break;
         }
