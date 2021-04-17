@@ -100,7 +100,7 @@ class DonationAPI
                 $query = "SELECT * FROM furniture";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table .= "ID: ".$record['id'].' New: '.$record['isNew']."\n";
+                    $table .= "ID: ".$record['id'].' Is New: '.$record['isNew']."\n";
                 }
                 break;
         }
