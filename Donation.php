@@ -6,8 +6,9 @@ require_once 'Furniture.php';
 require_once 'Food.php';
 require_once 'Financial.php';
 require_once 'Item.php';
+require_once 'IShowAll.php';
 
-class Donation implements IAddToDB
+class Donation implements IAddToDB,IShowAll
 {
     private int $id;
     private int $donorId;
@@ -115,10 +116,7 @@ class Donation implements IAddToDB
 
     }
 
-    public function getDonationDetails(): Array
-    {
-    //TODO
-    }
+
 
     function addToDB(): bool
     {
@@ -129,5 +127,14 @@ class Donation implements IAddToDB
         $this->id=$id;
         return true;
 
+    }
+
+    static function showAllData()
+    {
+        $query="SELECT * From Donations";
+        $result=DataBase::ExcuteRetreiveQuery($query);
+        if ($result==false)
+            return false;
+        return $result;
     }
 }
