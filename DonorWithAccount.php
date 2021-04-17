@@ -188,7 +188,7 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
 
     public function updateInDB(): bool
     {
-        $query= "UPDATE donoraccounts SET subscriptionType='$this->subscriptionType', subscriptionAmount='$this->subscriptionAmount' WHERE id='$this->id'";
+        $query= "UPDATE donorwithaccount SET subscriptionType='$this->subscriptionType', subscriptionAmount='$this->subscriptionAmount' WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
         return true;
     }

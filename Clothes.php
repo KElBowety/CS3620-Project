@@ -35,7 +35,6 @@ class Clothes extends Item
             return false;
         }
         $query="INSERT INTO clothes (inkindId, size) VALUES('$id','$this->size')";
-        $_SESSION['errorMessage'] = $query;
         $id=DataBase::ExcuteidQuery($query);
         if ($id==false)
         {
