@@ -2,7 +2,7 @@
 require_once 'Item.php';
 require_once 'DataBase.php';
 
-class Clothes extends Item
+class Clothes extends Item implements IAddToDB
 {
     private string $size;
 
@@ -15,9 +15,6 @@ class Clothes extends Item
     {
         // TODO: Implement calculateAge() method.
     }
-
-
-
 
     function addToDB(): bool
     {

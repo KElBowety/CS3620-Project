@@ -4,13 +4,15 @@ require_once "Item.php";
 abstract class Creator
 {
     abstract public function factoryMethod(): Item;
-    public function someDonation():string{
+
+    public function someDonation(): string
+    {
         $donation=$this->factoryMethod();
         $result="Donating " . $donation->donate();
         return $result;
     }
 
-    public function someOperation()
+    public function someOperation(): Item
     {
         $Item = $this->factoryMethod();
         // Now, use the product.

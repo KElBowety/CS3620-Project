@@ -19,6 +19,4 @@ class Context
     public function request2():void{
         $this->state->handle2();
     }
-
-
 }

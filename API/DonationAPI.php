@@ -4,7 +4,6 @@ require_once '..\Clothes.php';
 require_once '..\Food.php';
 require_once '..\Furniture.php';
 require_once '..\DonationDetails.php';
-require_once '..\DonationDetails.php';
 require_once '..\Financial.php';
 require_once '..\DataBase.php';
 

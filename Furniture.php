@@ -2,7 +2,7 @@
 
 require_once 'Item.php';
 
-class Furniture extends Item
+class Furniture extends Item implements IAddToDB
 {
     private bool $isNew;
 
