@@ -3,6 +3,7 @@
 require_once('DataBase.php');
 require_once('User.php');
 require_once('UserView.php');
+require_once ('ProxyUser.php');
 session_start();
 
 if(!isset($_SESSION["LoginUser"]))
@@ -14,7 +15,7 @@ if(!isset($_SESSION["LoginUser"]))
 $pageContents=DataBase::ExcuteRetreiveQuery("SELECT * FROM `page` WHERE 1");
 $TypeToArray= array('1'=>'أدمن','2'=>'محاسب');
 $u=$_SESSION["LoginUser"];
-$users = new User();
+$users = new ProxyUser();
 $users =$users->getUsersFiltered();
 $view = new UserView($pageContents, $users, $TypeToArray);
 

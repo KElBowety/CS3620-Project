@@ -49,7 +49,10 @@ class UserView
 
     public function showUsers()
     {
-        echo "<div class=\"container\">
+        $admins=$this->users[0];
+        $acc=$this->users[1];
+        if (count($admins)) {
+            echo "<div class=\"container\">
         <h1 class=\"text-white text-center\">  قائمة المستخدمين </h1>
         <div  class=\"row\" style=\"padding-top: 10%; padding-bottom: 10%\">
             <table class=\"table col-12\" dir=\"rtl\">
@@ -66,19 +69,53 @@ class UserView
                 </tr>
                 </thead>
                 <tbody>";
-        foreach ($this->users as $record) {
-            echo "<tr class='table-light'>";
-            echo "<td>" . $record['id'] . "</td>";
-            echo "<td>" . $record['name'] . "</td>";
-            echo "<td>" . $this->typeToArray[$record['type']] . "</td>";
-            echo "<td>" . $record['userName'] . "</td>";
-            echo "<td>" . $record['password'] . "</td>";
-            echo "<td>" . $record['regesterationDate'] . "</td>";
-            echo "<td>" . $record['LastSignIn'] . "</td>";
-            echo "<td><a href='./DeleteUserPage.php?userId=" . $record['id'] . "'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
-            echo "</tr>";
+            foreach ($admins as $record) {
+                echo "<tr class='table-light'>";
+                echo "<td>" . $record['id'] . "</td>";
+                echo "<td>" . $record['name'] . "</td>";
+                echo "<td>" . $this->typeToArray[$record['type']] . "</td>";
+                echo "<td>" . $record['userName'] . "</td>";
+                echo "<td>" . $record['password'] . "</td>";
+                echo "<td>" . $record['regesterationDate'] . "</td>";
+                echo "<td>" . $record['LastSignIn'] . "</td>";
+                echo "<td><a href='./DeleteUserPage.php?userId=" . $record['id'] . "'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
+                echo "</tr>";
+            }
+            echo "</tbody></table></div></div>";
         }
-        echo "</tbody></table></div></div>";
+
+
+        if (count($acc)) {
+            echo "<div class=\"container\">
+        <div  class=\"row\" style=\"padding-top: 10%; padding-bottom: 10%\">
+            <table class=\"table col-12\" dir=\"rtl\">
+                <thead >
+                <tr class=\"table-dark\">
+                    <th scope=\"col\">كود</th>
+                    <th scope=\"col\">الإسم</th>
+                    <th scope=\"col\">الوظيفة</th>
+                    <th scope=\"col\">إسم المستخدم</th>
+                    <th scope=\"col\">كلمة السر</th>
+                    <th scope=\"col\">تاريخ التسجيل</th>
+                    <th scope=\"col\">آخر تسجيل دخول</th>
+                    <th scope=\"col\">حذف</th>
+                </tr>
+                </thead>
+                <tbody>";
+            foreach ($acc as $record) {
+                echo "<tr class='table-light'>";
+                echo "<td>" . $record['id'] . "</td>";
+                echo "<td>" . $record['name'] . "</td>";
+                echo "<td>" . $this->typeToArray[$record['type']] . "</td>";
+                echo "<td>" . $record['userName'] . "</td>";
+                echo "<td>" . $record['password'] . "</td>";
+                echo "<td>" . $record['regesterationDate'] . "</td>";
+                echo "<td>" . $record['LastSignIn'] . "</td>";
+                echo "<td><a href='./DeleteUserPage.php?userId=" . $record['id'] . "'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
+                echo "</tr>";
+            }
+            echo "</tbody></table></div></div>";
+        }
     }
 
     public function showAddUser()
