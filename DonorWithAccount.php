@@ -178,7 +178,7 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
 
     public static function showAllData()
     {
-        $query="SELECT human.id, name, age,city,subscriptionType,subscriptionAmount, lastPayment FROM human INNER JOIN donorWithAccount ON donorWithAccount.id = human.id;";
+        $query="SELECT human.id, name, age,city,subscriptionType,subscriptionAmount, lastPayment FROM human INNER JOIN donorWithAccount ON donorWithAccount.humanId = human.id;";
         $result=DataBase::ExcuteRetreiveQuery($query);
         if ($result==false)
             return false;
@@ -188,17 +188,19 @@ class DonorWithAccount extends Human implements IAddToDB, IShowAll, IUpdateInDB,
 
     public function updateInDB(): bool
     {
-        $query= "UPDATE donorwithaccount SET subscriptionType='$this->subscriptionType', subscriptionAmount='$this->subscriptionAmount' WHERE id='$this->id'";
+        $query= "UPDATE donorwithaccount SET subscriptionType='$this->subscriptionType', subscriptionAmount='$this->subscriptionAmount' WHERE humanId='$this->id'";
         DataBase::ExcuteQuery($query);
         return true;
     }
 
     public function removeFromDB(): bool
     {
-        $query= "DELETE FROM donoraccounts WHERE id='$this->id'";
+
+        $query= "DELETE FROM donorwithaccount WHERE humanId='$this->id'";
         DataBase::ExcuteQuery($query);
-        $query= "DELETE FROM people WHERE id='$this->id'";
+        $query= "DELETE FROM human WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
+
         return true;
     }
     private function removeWrongInserted(): void

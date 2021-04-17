@@ -92,6 +92,7 @@ $Donor = $Donor->showAllData();
                             <th scope="col">قيمة الإشتراك</th>
                             <th scope="col">تاريخ آخر دفع</th>
                             <th scope="col">تعديل</th>
+                            <th scope="col">حذف</th>
 
 
                         </tr>
@@ -109,6 +110,7 @@ $Donor = $Donor->showAllData();
                                 echo "<td>" . $record['subscriptionAmount'] . "</td>";
                                 echo "<td>" . $record['lastPayment'] . "</td>";
                                 echo "<td> <a href='./updateDonorsPage.php?donorId=" . $record['id'] . "'><button type='button' class='btn btn-warning'>تعديل</button></a></td>";
+                                echo "<td> <a href='./RemoveDonorValidation.php?donorId=" . $record['id'] . "'><button type='button' class='btn btn-danger'>حذف</button></a></td>";
                                 echo "</tr>";
                             }
                         }

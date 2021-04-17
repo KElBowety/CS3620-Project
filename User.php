@@ -183,14 +183,14 @@ class User extends Human implements IAddToDB, IShowAll, IUpdateInDB,IRemoveFromD
 
     public function updateInDB(): bool
     {
-        $query= "UPDATE users SET userName='$this->userName', password='$this->password', LastSignIn='$this->lastSignIn'  WHERE id='$this->id'";
+        $query= "UPDATE users SET userName='$this->userName', password='$this->password', LastSignIn='$this->lastSignIn'  WHERE humanId='$this->id'";
         DataBase::ExcuteQuery($query);
         return true;
     }
 
     public function removeFromDB(): bool
     {
-        $query= "DELETE FROM users WHERE id='$this->id'";
+        $query= "DELETE FROM users WHERE humanId='$this->id'";
         DataBase::ExcuteQuery($query);
         $query= "DELETE FROM human WHERE id='$this->id'";
         DataBase::ExcuteQuery($query);
