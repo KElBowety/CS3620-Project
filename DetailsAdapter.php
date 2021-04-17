@@ -11,5 +11,4 @@ class DetailsAdapter
     public function getIDandValue(){
         return $this->details->getId().'and the value is '.$this->details->getValue();
     }
-
 }

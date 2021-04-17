@@ -72,10 +72,10 @@ class DonationAPI
             return json_encode("Donation not found");
         } else {
             foreach ($result as $record) {
-                $table = $record['id'] + ' ' + $record['donorId'] + ' ' + $record['date'] + ' ' + $record['value'];
+                $table = $record['id'].' '.$record['donorId'].' '.$record['date'].' '.$record['value'];
             }
 
-            return json_encode("Donations of the date " + $date + " " + $table);
+            return json_encode("Donations of the date ".$date." ".$table);
         }
     }
     public static function getItemDonation($type): string
@@ -86,21 +86,21 @@ class DonationAPI
                 $query = "SELECT * FROM clothes";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'] + ' ' + $record['size'];
+                    $table = $record['id'].' '.$record['size'];
                 }
                 break;
             case 2:
                 $query = "SELECT * FROM food";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'] + ' ' + $record['validationPeriod'];
+                    $table = $record['id'].' '.$record['validationPeriod'];
                 }
                 break;
             case 3:
                 $query = "SELECT * FROM furniture";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'] + ' ' + $record['isNew'];
+                    $table = $record['id'].' '.$record['isNew'];
                 }
                 break;
         }
@@ -108,10 +108,10 @@ class DonationAPI
             return json_encode("Donation not found");
         } else {
 
-            return json_encode("Donations of type " + $type + " are " + $table);
+            return json_encode("Donations of type ".$type." are ".$table);
         }
     }
 }
 
-DonationAPI::addItemDonation(["Test"], [2], [100], [2]);
-DonationAPI::getItemDonation(1);
+echo DonationAPI::addItemDonation(["Test"], [2], [100], [2]);
+echo DonationAPI::getItemDonation(1);
