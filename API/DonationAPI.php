@@ -72,7 +72,7 @@ class DonationAPI
             return json_encode("Donation not found");
         } else {
             foreach ($result as $record) {
-                $table = $record['id'].' '.$record['donorId'].' '.$record['date'].' '.$record['value'];
+                $table .= $record['id'].' '.$record['donorId'].' '.$record['date'].' '.$record['value']."\n";
             }
 
             return json_encode("Donations of the date ".$date." ".$table);
@@ -86,21 +86,21 @@ class DonationAPI
                 $query = "SELECT * FROM clothes";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'].' '.$record['size'];
+                    $table .= $record['id'].' '.$record['size']."\n";
                 }
                 break;
             case 2:
                 $query = "SELECT * FROM food";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'].' '.$record['validationPeriod'];
+                    $table .= $record['id'].' '.$record['validationPeriod']."\n";
                 }
                 break;
             case 3:
                 $query = "SELECT * FROM furniture";
                 $result = DataBase::ExcuteRetreiveQuery($query);
                 foreach ($result as $record) {
-                    $table = $record['id'].' '.$record['isNew'];
+                    $table .= $record['id'].' '.$record['isNew']."\n";
                 }
                 break;
         }
